@@ -1,0 +1,761 @@
+[
+    {
+        "id": "558aa57.345535c",
+        "type": "tab",
+        "label": "Poulailler",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "201a444d.5c8794",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "mosquitto",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "de8fc10e.e69fe8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Poulailler",
+        "tab": "",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "7c1aa235.db4c24",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#000000",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Metrique du poulailler",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "YYYY/MM/DD",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "4c635a07.88849c",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Poulailler",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "f920cb1c.1a24c",
+        "type": "ui_group",
+        "z": "",
+        "name": "Temperature",
+        "tab": "4c635a07.88849c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "24427581.f19a1a",
+        "type": "influxdb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "poulailler_test",
+        "name": "",
+        "usetls": false,
+        "tls": ""
+    },
+    {
+        "id": "33b99f2d.55e978",
+        "type": "ui_group",
+        "z": "",
+        "name": "Humidite",
+        "tab": "4c635a07.88849c",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "e74d6974.5376c",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "33b99f2d.55e978",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "6d2666d0.a8256",
+        "type": "influxdb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "poulailler",
+        "name": "",
+        "usetls": false,
+        "tls": ""
+    },
+    {
+        "id": "bf353c74.06bf5",
+        "type": "mqtt in",
+        "z": "558aa57.345535c",
+        "name": "",
+        "topic": "poulailler/temperature",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "201a444d.5c8794",
+        "x": 120,
+        "y": 140,
+        "wires": [
+            [
+                "9c94eb92.0f72e",
+                "21135a8a.4aca7e",
+                "ce654295.e6f288",
+                "b904a661.ea8bf8",
+                "76d2797b.955258",
+                "dd0d5dee.d20c9",
+                "63ad1c31.4c26dc",
+                "d8a65d93.16436"
+            ]
+        ]
+    },
+    {
+        "id": "21135a8a.4aca7e",
+        "type": "ui_text",
+        "z": "558aa57.345535c",
+        "group": "f920cb1c.1a24c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Temperature",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 570,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "647f9b28.97d4ac",
+        "type": "mqtt in",
+        "z": "558aa57.345535c",
+        "name": "",
+        "topic": "poulailler/humidite",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "201a444d.5c8794",
+        "x": 130,
+        "y": 620,
+        "wires": [
+            [
+                "5efdbbfd.e76f94",
+                "ba5660ae.1f63e",
+                "1b4f8d62.269783",
+                "1df47404.efb92c",
+                "c556aac8.615738",
+                "f39dce34.54c138",
+                "d8a65d93.16436",
+                "7be51b3b.3f0434"
+            ]
+        ]
+    },
+    {
+        "id": "9789bb9c.d6e568",
+        "type": "split",
+        "z": "558aa57.345535c",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 350,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6dfecce7.50e39c",
+        "type": "mqtt in",
+        "z": "558aa57.345535c",
+        "name": "",
+        "topic": "poulailler",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "201a444d.5c8794",
+        "x": 140,
+        "y": 880,
+        "wires": [
+            [
+                "9789bb9c.d6e568"
+            ]
+        ]
+    },
+    {
+        "id": "5efdbbfd.e76f94",
+        "type": "ui_text",
+        "z": "558aa57.345535c",
+        "group": "33b99f2d.55e978",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Humidite",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 560,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "ce654295.e6f288",
+        "type": "ui_chart",
+        "z": "558aa57.345535c",
+        "name": "",
+        "group": "f920cb1c.1a24c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Temperature",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "2",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b904a661.ea8bf8",
+        "type": "ui_gauge",
+        "z": "558aa57.345535c",
+        "name": "",
+        "group": "f920cb1c.1a24c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "C",
+        "format": "{{value}}",
+        "min": "-20",
+        "max": "30",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 570,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "1b4f8d62.269783",
+        "type": "ui_gauge",
+        "z": "558aa57.345535c",
+        "name": "",
+        "group": "33b99f2d.55e978",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humidite",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 560,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "ba5660ae.1f63e",
+        "type": "ui_chart",
+        "z": "558aa57.345535c",
+        "name": "",
+        "group": "33b99f2d.55e978",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Humidite",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 560,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "76d2797b.955258",
+        "type": "influxdb out",
+        "z": "558aa57.345535c",
+        "influxdb": "6d2666d0.a8256",
+        "name": "",
+        "measurement": "temperature",
+        "precision": "s",
+        "retentionPolicy": "",
+        "x": 650,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1df47404.efb92c",
+        "type": "influxdb out",
+        "z": "558aa57.345535c",
+        "influxdb": "6d2666d0.a8256",
+        "name": "",
+        "measurement": "humidite",
+        "precision": "s",
+        "retentionPolicy": "",
+        "x": 640,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "9c94eb92.0f72e",
+        "type": "delay",
+        "z": "558aa57.345535c",
+        "name": "rate limit 1 minute",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 590,
+        "y": 140,
+        "wires": [
+            [
+                "fa4c2b75.d0d25"
+            ]
+        ]
+    },
+    {
+        "id": "fa4c2b75.d0d25",
+        "type": "play audio",
+        "z": "558aa57.345535c",
+        "name": "",
+        "voice": "0",
+        "x": 810,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "c556aac8.615738",
+        "type": "debug",
+        "z": "558aa57.345535c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 550,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "dd0d5dee.d20c9",
+        "type": "debug",
+        "z": "558aa57.345535c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 550,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "63ad1c31.4c26dc",
+        "type": "function",
+        "z": "558aa57.345535c",
+        "name": "",
+        "func": "msg.topic = \"temperature\";\nmsg.dude = \"otherDude\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 380,
+        "wires": [
+            [
+                "c95de205.e1f39",
+                "92a7ba3a.2b03c"
+            ]
+        ]
+    },
+    {
+        "id": "b7d874c9.4b97c8",
+        "type": "debug",
+        "z": "558aa57.345535c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 870,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "c95de205.e1f39",
+        "type": "json",
+        "z": "558aa57.345535c",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 710,
+        "y": 380,
+        "wires": [
+            [
+                "b7d874c9.4b97c8"
+            ]
+        ]
+    },
+    {
+        "id": "92a7ba3a.2b03c",
+        "type": "debug",
+        "z": "558aa57.345535c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 730,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "f39dce34.54c138",
+        "type": "function",
+        "z": "558aa57.345535c",
+        "name": "",
+        "func": "msg.topic = \"humidite\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d8a65d93.16436",
+        "type": "join",
+        "z": "558aa57.345535c",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "1",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 550,
+        "y": 520,
+        "wires": [
+            [
+                "b370c7a1.baea98"
+            ]
+        ]
+    },
+    {
+        "id": "b370c7a1.baea98",
+        "type": "debug",
+        "z": "558aa57.345535c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 730,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "6b070251.fcab94",
+        "type": "mqtt in",
+        "z": "558aa57.345535c",
+        "name": "",
+        "topic": "poulailler/sensor1",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "201a444d.5c8794",
+        "x": 150,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1dc1a1d0.9b5e56",
+        "type": "inject",
+        "z": "558aa57.345535c",
+        "name": "Sensor1 json injector",
+        "topic": "poulailler/sensor1",
+        "payload": "{\"temperature\":6.5, \"humidite\":56.7}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "5",
+        "x": 160,
+        "y": 1080,
+        "wires": [
+            [
+                "2b919bc3.fd5c94",
+                "7be51b3b.3f0434"
+            ]
+        ]
+    },
+    {
+        "id": "6a065749.142f7",
+        "type": "debug",
+        "z": "558aa57.345535c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 610,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "2b919bc3.fd5c94",
+        "type": "influxdb out",
+        "z": "558aa57.345535c",
+        "influxdb": "24427581.f19a1a",
+        "name": "",
+        "measurement": "metrics",
+        "precision": "s",
+        "retentionPolicy": "",
+        "x": 530,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "7be51b3b.3f0434",
+        "type": "function",
+        "z": "558aa57.345535c",
+        "name": "tagmaker",
+        "func": "\n let topics = msg.topic.split('/');\n msg.db = topics.shift();\n \n tags = topics.reduce((accumulator, value, index) => {\n     accumulator['tag'+index] = value;\n     return accumulator;\n },\n {});\n \n  msg.payload = [\n     msg.payload,\n     tags,\n     ];\n \n return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 1080,
+        "wires": [
+            [
+                "6a065749.142f7"
+            ]
+        ]
+    },
+    {
+        "id": "155f8ab0.7bea35",
+        "type": "inject",
+        "z": "558aa57.345535c",
+        "name": "Sensor2 json injector",
+        "topic": "poulailler/sensor2",
+        "payload": "{\"temperature\":16.5, \"humidite\":156.7}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "5",
+        "x": 160,
+        "y": 1140,
+        "wires": [
+            [
+                "7be51b3b.3f0434"
+            ]
+        ]
+    }
+]
