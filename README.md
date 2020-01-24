@@ -327,7 +327,7 @@ BEGIN
 END
 ```
 
-``
+```
 cq_query
 SELECT <function[s]> INTO <destination_measurement> FROM <measurement> [WHERE <stuff>] GROUP BY time(<interval>)[,<tag_key[s]>]
 ```
