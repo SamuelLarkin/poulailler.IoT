@@ -143,6 +143,11 @@ http://192.168.X.Y:1880/ui
 
 * [Get Started](https://nodered.org/#get-started)
 
+```
+sudo bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+sudo systemctl enable nodered.service
+```
+
 If msg.payload is an object containing multiple properties, the fields will be written to the measurement.
 
 For example, the following flow injects three fields, numValue, randomValue and strValue into the same measurement with the current timestamp.
@@ -563,6 +568,15 @@ END
 http://192.168.X.Y:3000
 
 * [Howto Install InfluxDB an Grafana on a Raspberry pi 3](http://blog.centurio.net/2018/10/28/howto-install-influxdb-and-grafana-on-a-raspberry-pi-3/)
+
+```
+wget https://dl.grafana.com/oss/release/grafana-rpi_6.5.3_armhf.deb
+sudo dpkg -i grafana-rpi_6.5.3_armhf.deb
+sudo systemctl list-unit-files
+sudo systemctl start grafana-server
+sudo systemctl unmask grafana-server.service
+sudo systemctl enable grafana-server
+```
 
 
 
