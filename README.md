@@ -3,43 +3,38 @@
 Suivre la temperature et le taux d'humidite dans le poulailler
 
 
+## AdaFruit Feather HUZZAH ESP8266
+
 AdaFruit Feather HUZZAH ESP8266 on COM4
 
-[feather HUZZAH ESP8266](https://cdn-learn.adafruit.com/assets/assets/000/046/249/original/adafruit_products_Huzzah_ESP8266_Pinout_v1.2-1.png?1504885873)
-https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/pinouts
-https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/using-arduino-ide
-https://randomnerdtutorials.com/esp8266-dht11dht22-temperature-and-humidity-web-server-with-arduino-ide/
+* [adafruit-feather-HUZZAH-esp8266 - pinouts image](https://cdn-learn.adafruit.com/assets/assets/000/046/249/original/adafruit_products_Huzzah_ESP8266_Pinout_v1.2-1.png?1504885873)
+* [adafruit-feather-huzzah-esp8266 - pinouts](https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/pinouts)
+* [adafruit-feather-huzzah-esp8266 - using-arduino-ide](https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/using-arduino-ide)
+* [adafruit-feather-huzzah-esp8266 - using-nodemcu-lua](https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/using-nodemcu-lua)
 
-[Database management using InfluxQL](https://docs.influxdata.com/influxdb/v1.7/query_language/database_management/)
+
 
 
 ## Raspberry Pi
 
 ### GPIO
-[Raspberry gPIo](https://learn.sparkfun.com/tutorials/raspberry-gpio/all#python-rpigpio-api)
-[Raspberry Pinout](https://cdn.sparkfun.com/assets/learn_tutorials/4/2/4/header_pinout.jpg)
-[Turning on an LED with your Raspberry Pi's GPIO Pins](https://thepihut.com/blogs/raspberry-pi-tutorials/27968772-turning-on-an-led-with-your-raspberry-pis-gpio-pins)
 
-## WebCam with motion
+* [Raspberry gPIo](https://learn.sparkfun.com/tutorials/raspberry-gpio/all#python-rpigpio-api)
+* [Raspberry Pinout](https://cdn.sparkfun.com/assets/learn_tutorials/4/2/4/header_pinout.jpg)
+* [Turning on an LED with your Raspberry Pi's GPIO Pins](https://thepihut.com/blogs/raspberry-pi-tutorials/27968772-turning-on-an-led-with-your-raspberry-pis-gpio-pins)
+
+### WebCam with motion
+
 USB Webcam - Logitech Quickcam 9000
-[MotionEye on a Raspberry Pi](https://github.com/ccrisan/motioneye/wiki/Install-On-Raspbian)
-[Getting a picture out of a Logitech Quickcam 9000 Pro](https://www.raspberrypi.org/forums/viewtopic.php?t=10496#p123631)
+* [MotionEye on a Raspberry Pi](https://github.com/ccrisan/motioneye/wiki/Install-On-Raspbian)
+* [Getting a picture out of a Logitech Quickcam 9000 Pro](https://www.raspberrypi.org/forums/viewtopic.php?t=10496#p123631)
 
+### Cases
 
+* [Best 8 raspberry pi 4 cases in 2019](https://www.seeedstudio.com/blog/2019/09/19/best-8-raspberry-pi-4-cases-in-2019/)
+* [SparkFun](https://www.sparkfun.com/categories/182)
+* [Argon40](https://www.argon40.com/raspberry-pi-cases.html)
 
-
-
-https://cdn-learn.adafruit.com/assets/assets/000/046/249/original/adafruit_products_Huzzah_ESP8266_Pinout_v1.2-1.png?1504885873
-https://randomnerdtutorials.com/esp8266-dht11dht22-temperature-and-humidity-web-server-with-arduino-ide/
-https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
-https://www.instructables.com/id/ESP8266-12-blynk-wireless-temperature-LM35-sensor/
-https://cityos.io/tutorial/2006/ESP12-and-DHT22
-https://www.losant.com/blog/getting-started-with-the-esp8266-and-dht22-sensor
-https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/pinouts
-https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/using-arduino-ide
-https://docs.micropython.org/en/latest/esp8266/tutorial/intro.html
-https://www.nodemcu.com/index_en.html#fr_54745c8bd775ef4b99000011
-https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/using-nodemcu-lua
 
 
 ## Buy
@@ -60,6 +55,11 @@ https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/using-nodemcu-lua
 * [Adding a DHT22 temperature and humidity sensor to the Sonoff](https://tritek.pw/2016/05/24/adding-a-dht22-temperature-and-humidity-sensor-to-the-sonoff/)
 * [Tasmota + D1mini (or Sonoff) - Temp & Humidity, ws2812 LEDs, and Motion Detection](https://www.youtube.com/watch?v=sVml02kP3DU)
 * [DIY Lipo Wireless Temperature Sensor ESP8266 // Less than $5](https://www.youtube.com/watch?v=7tGPpG_9hik)
+* [esp8266-dht11dht22-temperature-and-humidity-web-server-with-arduino-ide](https://randomnerdtutorials.com/esp8266-dht11dht22-temperature-and-humidity-web-server-with-arduino-ide/)
+* [esp8266-pinout-reference-gpios](https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/)
+* [ESP8266-12-blynk-wireless-temperature-LM35-sensor](https://www.instructables.com/id/ESP8266-12-blynk-wireless-temperature-LM35-sensor/)
+* [ESP12-and-DHT22](https://cityos.io/tutorial/2006/ESP12-and-DHT22)
+* [getting-started-with-the-esp8266-and-dht22-sensor](https://www.losant.com/blog/getting-started-with-the-esp8266-and-dht22-sensor)
 
 
 
@@ -69,6 +69,9 @@ https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/using-nodemcu-lua
 * [Tasmota](https://github.com/arendst/Tasmota)
 * [Home Assistant](https://www.home-assistant.io/getting-started/)
 * [xively](https://xively.com/)
+* [micropython](https://docs.micropython.org/en/latest/esp8266/tutorial/intro.html)
+* [nodemcu](https://www.nodemcu.com/index_en.html#fr_54745c8bd775ef4b99000011)
+ *[CircuitPython](https://circuitpython.org/)
 
 
 
@@ -80,27 +83,21 @@ https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/using-nodemcu-lua
 
 
 
-Software
+## Software
 
-nodered
-http://192.168.X.Y:1880
+### Mosquitto
+
+https://randomnerdtutorials.com/esp8266-and-node-red-with-mqtt/
+http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/
+http://www.steves-internet-guide.com/mqtt/
 
 `mosquitto -v`
+```
 1579231786: mosquitto version 1.5.7 starting
 1579231786: Using default config.
 1579231786: Opening ipv4 listen socket on port 1883.
 1579231786: Error: Address already in use
-
-https://pimylifeup.com/raspberry-pi-influxdb/
-http://blog.centurio.net/2018/10/28/howto-install-influxdb-and-grafana-on-a-raspberry-pi-3/
-https://gist.github.com/xoseperez/e23334910fb45b0424b35c422760cb87
-
-https://learn.adafruit.com/mini-smart-home-with-esp8266-huzzah-feather-raspberry-pi-hassio-crickit/mqtt-setup-2
-https://randomnerdtutorials.com/esp8266-and-node-red-with-mqtt/
-
-https://nodered.org/#get-started
-https://www.balena.io/blog/build-an-environment-and-air-quality-monitor-with-raspberry-pi/#2settinguptheraspberrypi
-https://www.influxdata.com/get-influxdb/
+```
 
 ```
 mosquitto_sub -t '#' -v
@@ -126,25 +123,22 @@ poulailler/humidite 24.90
 ```
 
 
+### Node-Red
 
-node-red
 http://192.168.X.Y:1880
 http://192.168.X.Y:1880/ui
 
-influxdb 8086
-
-Grafana
-http://192.168.X.Y:3000
-
-https://randomnerdtutorials.com/esp8266-and-node-red-with-mqtt/
-
-http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/
-http://www.steves-internet-guide.com/mqtt/
-
-[influx retention](https://bl.ocks.org/nl-hugo/acf9ceabb9a813d067484d9723ca3f77)
+* [Get Started](https://nodered.org/#get-started)
 
 
 
+### InfluxDB
+
+influxdb:8086
+
+* [Download](https://www.influxdata.com/get-influxdb/)
+* [Database management using InfluxQL](https://docs.influxdata.com/influxdb/v1.7/query_language/database_management/)
+* [influx retention](https://bl.ocks.org/nl-hugo/acf9ceabb9a813d067484d9723ca3f77)
 
 https://www.npmjs.com/package/node-red-contrib-influxdb
 If msg.payload is an object containing multiple properties, the fields will be written to the measurement.
@@ -159,9 +153,9 @@ The function node in the flow above consists of the following:
 
 ```
 msg.payload = {
-numValue: 123.0,
-strValue: "message",
-randomValue: Math.random()*10
+  numValue: 123.0,
+  strValue: "message",
+  randomValue: Math.random()*10
 }
 return msg;
 ```
@@ -226,21 +220,6 @@ return msg;
 ```
 
 Note how timestamps are specified - the number of milliseconds since 1 January 1970 00:00:00 UTC.
-
-
-
-https://makeradvisor.com/esp32-vs-esp8266/
-https://makeradvisor.com/esp32-development-boards-review-comparison/
-https://randomnerdtutorials.com/esp32-dht11-dht22-temperature-humidity-web-server-arduino-ide/
-https://www.banggood.com/ESP32-CAM-WiFi-bluetooth-Camera-Module-Development-Board-ESP32-With-Camera-Module-OV2640-p-1394679.html?rmmds=category&cur_warehouse=CN
-https://www.banggood.com/ESP32-Development-Board-WiFibluetooth-Ultra-Low-Power-Consumption-Dual-Cores-ESP-32-ESP-32S-Board-p-1109512.html?p=MA240439985285201910&cur_warehouse=CN
-https://www.banggood.com/LILYGO-TTGO-T-Energy-ESP32-8MByte-PSRAM-WiFi-bluetooth-Module-18650-Battery-ESP32-WROVER-IB-Development-Board-p-1427125.html?p=MA240439985285201910&cur_warehouse=CN
-https://www.banggood.com/Geekcreit-ESP32-OLED-Module-For-Arduino-ESP32-OLED-WiFi-bluetooth-Dual-ESP-32-ESP-32S-ESP8266-p-1148119.html?p=MA240439985285201910&cur_warehouse=CN
-
-https://www.seeedstudio.com/blog/2019/09/19/best-8-raspberry-pi-4-cases-in-2019/
-https://www.sparkfun.com/categories/182
-https://www.argon40.com/raspberry-pi-cases.html
-
 
 [Post data to InfluxDB](https://flows.nodered.org/flow/1d06cc6dbb57544f2d8b)
 
@@ -365,12 +344,16 @@ END
 
 
 [How to set default retention policy and duration for InfluxDB via configuration](https://stackoverflow.com/a/41640770)
-#CREATE DATABASE poulailler_test
+
 ```
 CREATE DATABASE <database_name>
 [WITH [DURATION <duration>] [REPLICATION <n>]
       [SHARD DURATION <duration>] [NAME <retention-policy-name>]]
 CREATE DATABASE poulailler_test WITH DURATION 1d REPLICATION 1 NAME "jour"
+```
+
+```
+CREATE DATABASE poulailler_test
 ```
 
 ```
@@ -399,3 +382,30 @@ END
 CREATE CONTINUOUS QUERY cq_2m ON "poulailler_test" BEGIN SELECT mean(temperature) AS temperature, mean(humidite) AS humidite INTO "poulailler_test".semaine.metrics FROM metrics GROUP BY time(2m) END
 CREATE CONTINUOUS QUERY cq_15m ON "poulailler_test" BEGIN SELECT mean(temperature) AS temperature, mean(humidite) AS humidite INTO "poulailler_test".annee.metrics FROM metrics GROUP BY time(15m) END
 ```
+
+
+
+### Grafana
+
+http://192.168.X.Y:3000
+
+
+
+##########################################################
+https://pimylifeup.com/raspberry-pi-influxdb/
+http://blog.centurio.net/2018/10/28/howto-install-influxdb-and-grafana-on-a-raspberry-pi-3/
+https://gist.github.com/xoseperez/e23334910fb45b0424b35c422760cb87
+
+https://learn.adafruit.com/mini-smart-home-with-esp8266-huzzah-feather-raspberry-pi-hassio-crickit/mqtt-setup-2
+https://randomnerdtutorials.com/esp8266-and-node-red-with-mqtt/
+
+https://www.balena.io/blog/build-an-environment-and-air-quality-monitor-with-raspberry-pi/#2settinguptheraspberrypi
+
+https://makeradvisor.com/esp32-vs-esp8266/
+https://makeradvisor.com/esp32-development-boards-review-comparison/
+https://randomnerdtutorials.com/esp32-dht11-dht22-temperature-humidity-web-server-arduino-ide/
+https://www.banggood.com/ESP32-CAM-WiFi-bluetooth-Camera-Module-Development-Board-ESP32-With-Camera-Module-OV2640-p-1394679.html?rmmds=category&cur_warehouse=CN
+https://www.banggood.com/ESP32-Development-Board-WiFibluetooth-Ultra-Low-Power-Consumption-Dual-Cores-ESP-32-ESP-32S-Board-p-1109512.html?p=MA240439985285201910&cur_warehouse=CN
+https://www.banggood.com/LILYGO-TTGO-T-Energy-ESP32-8MByte-PSRAM-WiFi-bluetooth-Module-18650-Battery-ESP32-WROVER-IB-Development-Board-p-1427125.html?p=MA240439985285201910&cur_warehouse=CN
+https://www.banggood.com/Geekcreit-ESP32-OLED-Module-For-Arduino-ESP32-OLED-WiFi-bluetooth-Dual-ESP-32-ESP-32S-ESP8266-p-1148119.html?p=MA240439985285201910&cur_warehouse=CN
+
