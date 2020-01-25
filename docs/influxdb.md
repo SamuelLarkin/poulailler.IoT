@@ -70,6 +70,9 @@ BEGIN
 END
 ```
 
+[How to make Continuous Query inherit tags from the source time series? #126](https://github.com/influxdata/influxdb.com/issues/126)
+
+
 
 #### Create the Database
 
@@ -92,13 +95,13 @@ CREATE CONTINUOUS QUERY cq_2m ON poulailler BEGIN
   SELECT mean(temperature) AS temperature, mean(humidite) AS humidite
   INTO poulailler.semaine.metrics
   FROM metrics
-  GROUP BY time(2m)
+  GROUP BY time(2m),*
 END
 
 CREATE CONTINUOUS QUERY cq_15m ON poulailler BEGIN
   SELECT mean(temperature) AS temperature, mean(humidite) AS humidite
   INTO poulailler.annee.metrics
   FROM metrics
-  GROUP BY time(15m)
+  GROUP BY time(15m),*
 END
 ```
