@@ -463,8 +463,12 @@ influxdb:8086
 
 #### Create a Database
 
+[How to set default retention policy and duration for InfluxDB via configuration](https://stackoverflow.com/a/41640770)
+
 ```
-CREATE DATABASE "poulailler"
+CREATE DATABASE <database_name>
+[WITH [DURATION <duration>] [REPLICATION <n>]
+      [SHARD DURATION <duration>] [NAME <retention-policy-name>]]
 ```
 
 
@@ -520,39 +524,33 @@ END
 ```
 
 
-[How to set default retention policy and duration for InfluxDB via configuration](https://stackoverflow.com/a/41640770)
+#### Create the Database
 
 ```
-CREATE DATABASE <database_name>
-[WITH [DURATION <duration>] [REPLICATION <n>]
-      [SHARD DURATION <duration>] [NAME <retention-policy-name>]]
-```
-
-```
-#CREATE DATABASE poulailler_test
-CREATE DATABASE poulailler_test
+#CREATE DATABASE poulailler
+CREATE DATABASE poulailler
   WITH DURATION 1d
   REPLICATION 1
   NAME jour
 ```
 
 ```
-#CREATE RETENTION POLICY jour ON "poulailler_test" DURATION 1d REPLICATION 1 DEFAULT
-CREATE RETENTION POLICY semaine ON "poulailler_test" DURATION 1w REPLICATION 1
-CREATE RETENTION POLICY annee ON "poulailler_test" DURATION 52w REPLICATION 1
+#CREATE RETENTION POLICY jour ON "poulailler" DURATION 1d REPLICATION 1 DEFAULT
+CREATE RETENTION POLICY semaine ON "poulailler" DURATION 1w REPLICATION 1
+CREATE RETENTION POLICY annee ON "poulailler" DURATION 52w REPLICATION 1
 ```
 
 ```
-CREATE CONTINUOUS QUERY cq_2m ON poulailler_test BEGIN
+CREATE CONTINUOUS QUERY cq_2m ON poulailler BEGIN
   SELECT mean(temperature) AS temperature, mean(humidite) AS humidite
-  INTO poulailler_test.semaine.metrics
+  INTO poulailler.semaine.metrics
   FROM metrics
   GROUP BY time(2m)
 END
 
-CREATE CONTINUOUS QUERY cq_15m ON poulailler_test BEGIN
+CREATE CONTINUOUS QUERY cq_15m ON poulailler BEGIN
   SELECT mean(temperature) AS temperature, mean(humidite) AS humidite
-  INTO poulailler_test.annee.metrics
+  INTO poulailler.annee.metrics
   FROM metrics
   GROUP BY time(15m)
 END
