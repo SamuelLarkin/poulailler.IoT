@@ -231,7 +231,8 @@ void loop(){
       Serial.println(h);
     }
 
-    client.publish("poulailler/temperature", String(t).c_str());
-    client.publish("poulailler/humidite", String(h).c_str());
+    //client.publish("poulailler/temperature", String(t).c_str());
+    //client.publish("poulailler/humidite", String(h).c_str());
+    client.publish("poulailler/sensor_1", (String("{\"temperature\":") + String(t) + String(",\"humidite\":") + String(h) + String("}")).c_str());
   }
 }
