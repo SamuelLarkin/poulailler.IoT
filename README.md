@@ -143,17 +143,6 @@ http://192.168.X.Y:1880/ui
 
 * [Get Started](https://nodered.org/#get-started)
 
-
-
-### InfluxDB
-
-influxdb:8086
-
-* [Download](https://www.influxdata.com/get-influxdb/)
-* [Database management using InfluxQL](https://docs.influxdata.com/influxdb/v1.7/query_language/database_management/)
-* [influx retention](https://bl.ocks.org/nl-hugo/acf9ceabb9a813d067484d9723ca3f77)
-* [InfluxDB plugin for Node-Red](https://www.npmjs.com/package/node-red-contrib-influxdb)
-
 If msg.payload is an object containing multiple properties, the fields will be written to the measurement.
 
 For example, the following flow injects three fields, numValue, randomValue and strValue into the same measurement with the current timestamp.
@@ -294,7 +283,8 @@ For example, the following simple flow injects three fields as above, along with
 
       ]
    }
-]```
+]
+```
 
 The function node consists of the following code:
 
@@ -374,7 +364,8 @@ For example, the following flow injects two points with timestamps specified.
 
       ]
    }
-]```
+]
+```
 
 The function node in the above flow looks as follows:
 
@@ -459,7 +450,18 @@ return msg;
 ```
 
 
-### Create a Database
+
+### InfluxDB
+
+influxdb:8086
+
+* [Download](https://www.influxdata.com/get-influxdb/)
+* [Database management using InfluxQL](https://docs.influxdata.com/influxdb/v1.7/query_language/database_management/)
+* [influx retention](https://bl.ocks.org/nl-hugo/acf9ceabb9a813d067484d9723ca3f77)
+* [InfluxDB plugin for Node-Red](https://www.npmjs.com/package/node-red-contrib-influxdb)
+
+
+#### Create a Database
 
 ```
 CREATE DATABASE "poulailler"
