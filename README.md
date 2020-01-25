@@ -3,6 +3,14 @@
 Suivre la temperature et le taux d'humidite dans le poulailler
 
 
+
+## Arduino Boards
+
+* [Difference between ESP8622 & ESP32](https://makeradvisor.com/esp32-vs-esp8266/)
+* [ESP32 Development Boards Review Comparison](https://makeradvisor.com/esp32-development-boards-review-comparison/)
+
+
+
 ## AdaFruit Feather HUZZAH ESP8266
 
 AdaFruit Feather HUZZAH ESP8266 on COM4
@@ -43,14 +51,16 @@ USB Webcam - Logitech Quickcam 9000
 |:-----|:------|
 | CA$4.64 | [D1 Mini V2 NodeMcu 4M Bytes Lua WIFI Internet Of Things Development Board Based ESP8266 Geekcreit for Arduino - products that work with official Arduino boards](https://www.banggood.com/D1-Mini-V2-NodeMcu-4M-Bytes-Lua-WIFI-Internet-Of-Things-Development-Board-Based-ESP8266-p-1115398.html?p=CS101558118042016088&utm_content=tanghao&utm_campaign=mesh&cur_warehouse=CN) |
 | $9.99 | [Makerfocus D1 Mini NodeMcu 4M Bytes Lua WiFi Development Board Base on ESP8266 ESP-12F N Compatible NodeMcu Arduino](https://www.amazon.com/Makerfocus-NodeMcu-Development-ESP8266-Compatible/dp/B01N3P763C/ref=as_li_ss_tl?s=electronics&ie=UTF8&qid=1521437976&sr=1-1&keywords=d1+mini&linkCode=sl1&tag=drzzs0e-20&linkId=71a3816fd425694ae9a07c279d6cce74) |
-| | [buyapi ESP8266](https://www.buyapi.ca/search.php?search_query=8266&section=product&sort=priceasc) |
-| | [buyapi esp8266](https://www.buyapi.ca/search.php?search_query=esp8266&section=product) |
+| | [buyapi esp8266 query](https://www.buyapi.ca/search.php?search_query=esp8266&section=product) |
 | $13.95 | [Adafruit HUZZAH ESP8266 Breakout](https://www.buyapi.ca/product/adafruit-huzzah-esp8266-breakout/) |
 | | [Sonoff Express](https://www.aliexpress.com/item/4000180793880.html?src=google&src=google&albch=shopping&acnt=494-037-6276&isdl=y&slnk=&plac=&mtctp=&albbt=Google_7_shopping&aff_platform=google&aff_short_key=UneMJZVf&&albagn=888888&albcp=7386552844&albag=80241711349&trgt=539263010115&crea=en4000180793880&netw=u&device=c&gclid=EAIaIQobChMI_5PT2vTV5QIVBp6fCh3xawQXEAQYASABEgK3I_D_BwE&gclsrc=aw.ds) |
 | 22.95$ | [Adafruit Feather HUZZAH with ESP8266 WiFi](https://www.buyapi.ca/product/adafruit-feather-huzzah-with-esp8266-wifi/) |
-| | [ESP32](https://www.banggood.com/ESP32-Development-Board-WiFibluetooth-Ultra-Low-Power-Consumption-Dual-Cores-ESP-32-ESP-32S-Board-p-1109512.html?p=MA240439985285201910&cur_warehouse=CN) |
-| | [LilyGo ESP32](https://www.banggood.com/LILYGO-TTGO-T-Energy-ESP32-8MByte-PSRAM-WiFi-bluetooth-Module-18650-Battery-ESP32-WROVER-IB-Development-Board-p-1427125.html?p=MA240439985285201910&cur_warehouse=CN) |
-| | [Geekcreit ESP32](https://www.banggood.com/Geekcreit-ESP32-OLED-Module-For-Arduino-ESP32-OLED-WiFi-bluetooth-Dual-ESP-32-ESP-32S-ESP8266-p-1148119.html?p=MA240439985285201910&cur_warehouse=CN) |
+| CA$8.68 | [ESP32 Development Board WiFi+bluetooth Ultra Low Power Consumption Dual Cores ESP-32 ESP-32S Board Geekcreit for Arduino - products that work with official Arduino boards](https://www.banggood.com/ESP32-Development-Board-WiFibluetooth-Ultra-Low-Power-Consumption-Dual-Cores-ESP-32-ESP-32S-Board-p-1109512.html?p=MA240439985285201910&cur_warehouse=CN) |
+| CA$12.02 | [LILYGO® TTGO T-Energy ESP32 8MByte PSRAM WiFi bluetooth Module 18650 Battery ESP32-WROVER-IB Development Board
+](https://www.banggood.com/LILYGO-TTGO-T-Energy-ESP32-8MByte-PSRAM-WiFi-bluetooth-Module-18650-Battery-ESP32-WROVER-IB-Development-Board-p-1427125.html?p=MA240439985285201910&cur_warehouse=CN) |
+| CA$13.35 | [Geekcreit ESP32 OLED Module For ESP32 OLED WiFi + bluetooth Dual ESP-32 ESP-32S ESP8266 OLED Module](https://www.banggood.com/Geekcreit-ESP32-OLED-Module-For-Arduino-ESP32-OLED-WiFi-bluetooth-Dual-ESP-32-ESP-32S-ESP8266-p-1148119.html?p=MA240439985285201910&cur_warehouse=CN) |
+| CA$9.34 | [ESP32-CAM WiFi + bluetooth Camera Module Development Board ESP32 With Camera Module OV2640 Geekcreit for Arduino - products that work with official Arduino boards
+](https://www.banggood.com/ESP32-CAM-WiFi-bluetooth-Camera-Module-Development-Board-ESP32-With-Camera-Module-OV2640-p-1394679.html?rmmds=category&cur_warehouse=CN) |
 
 
 ## Tutorial
@@ -509,22 +519,6 @@ BEGIN
 END
 ```
 
-```
-CREATE CONTINUOUS QUERY "cq_2m" ON "poulailler" BEGIN
-  SELECT mean("temperature") AS "temperature", mean("humidite") AS "humidite"
-  INTO "semaine"."metrics"
-  FROM "metrics"
-  GROUP BY time(2m)
-END
-
-CREATE CONTINUOUS QUERY "cq_15m" ON "poulailler" BEGIN
-  SELECT mean("temperature") AS "temperature", mean("humidite") AS "humidite"
-  INTO "annee"."metrics"
-  FROM "metrics"
-  GROUP BY time(15m)
-END
-```
-
 
 [How to set default retention policy and duration for InfluxDB via configuration](https://stackoverflow.com/a/41640770)
 
@@ -532,38 +526,36 @@ END
 CREATE DATABASE <database_name>
 [WITH [DURATION <duration>] [REPLICATION <n>]
       [SHARD DURATION <duration>] [NAME <retention-policy-name>]]
-CREATE DATABASE poulailler_test WITH DURATION 1d REPLICATION 1 NAME "jour"
 ```
 
 ```
+#CREATE DATABASE poulailler_test
 CREATE DATABASE poulailler_test
+  WITH DURATION 1d
+  REPLICATION 1
+  NAME jour
 ```
 
 ```
-#CREATE RETENTION POLICY "jour" ON "poulailler_test" DURATION 1d REPLICATION 1 DEFAULT
-CREATE RETENTION POLICY "semaine" ON "poulailler_test" DURATION 1w REPLICATION 1
-CREATE RETENTION POLICY "annee" ON "poulailler_test" DURATION 52w REPLICATION 1
+#CREATE RETENTION POLICY jour ON "poulailler_test" DURATION 1d REPLICATION 1 DEFAULT
+CREATE RETENTION POLICY semaine ON "poulailler_test" DURATION 1w REPLICATION 1
+CREATE RETENTION POLICY annee ON "poulailler_test" DURATION 52w REPLICATION 1
 ```
 
 ```
-CREATE CONTINUOUS QUERY "cq_2m" ON "poulailler_test" BEGIN
-  SELECT mean("temperature") AS "temperature", mean("humidite") AS "humidite"
-  INTO "poulailler_test"."semaine"."metrics"
-  FROM "metrics"
+CREATE CONTINUOUS QUERY cq_2m ON poulailler_test BEGIN
+  SELECT mean(temperature) AS temperature, mean(humidite) AS humidite
+  INTO poulailler_test.semaine.metrics
+  FROM metrics
   GROUP BY time(2m)
 END
 
-CREATE CONTINUOUS QUERY "cq_15m" ON "poulailler_test" BEGIN
-  SELECT mean("temperature") AS "temperature", mean("humidite") AS "humidite"
-  INTO "poulailler_test"."annee"."metrics"
-  FROM "metrics"
+CREATE CONTINUOUS QUERY cq_15m ON poulailler_test BEGIN
+  SELECT mean(temperature) AS temperature, mean(humidite) AS humidite
+  INTO poulailler_test.annee.metrics
+  FROM metrics
   GROUP BY time(15m)
 END
-```
-
-```
-CREATE CONTINUOUS QUERY cq_2m ON "poulailler_test" BEGIN SELECT mean(temperature) AS temperature, mean(humidite) AS humidite INTO "poulailler_test".semaine.metrics FROM metrics GROUP BY time(2m) END
-CREATE CONTINUOUS QUERY cq_15m ON "poulailler_test" BEGIN SELECT mean(temperature) AS temperature, mean(humidite) AS humidite INTO "poulailler_test".annee.metrics FROM metrics GROUP BY time(15m) END
 ```
 
 
@@ -576,16 +568,10 @@ http://192.168.X.Y:3000
 
 
 
-##########################################################
-https://pimylifeup.com/raspberry-pi-influxdb/
-https://gist.github.com/xoseperez/e23334910fb45b0424b35c422760cb87
+## To Classify
 
-https://learn.adafruit.com/mini-smart-home-with-esp8266-huzzah-feather-raspberry-pi-hassio-crickit/mqtt-setup-2
-https://randomnerdtutorials.com/esp8266-and-node-red-with-mqtt/
-
-https://www.balena.io/blog/build-an-environment-and-air-quality-monitor-with-raspberry-pi/#2settinguptheraspberrypi
-
-https://makeradvisor.com/esp32-vs-esp8266/
-https://makeradvisor.com/esp32-development-boards-review-comparison/
-https://www.banggood.com/ESP32-CAM-WiFi-bluetooth-Camera-Module-Development-Board-ESP32-With-Camera-Module-OV2640-p-1394679.html?rmmds=category&cur_warehouse=CN
-
+* https://pimylifeup.com/raspberry-pi-influxdb/
+* https://gist.github.com/xoseperez/e23334910fb45b0424b35c422760cb87
+* https://learn.adafruit.com/mini-smart-home-with-esp8266-huzzah-feather-raspberry-pi-hassio-crickit/mqtt-setup-2
+* https://randomnerdtutorials.com/esp8266-and-node-red-with-mqtt/
+* https://www.balena.io/blog/build-an-environment-and-air-quality-monitor-with-raspberry-pi/#2settinguptheraspberrypi
