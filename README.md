@@ -56,11 +56,9 @@ USB Webcam - Logitech Quickcam 9000
 | | [Sonoff Express](https://www.aliexpress.com/item/4000180793880.html?src=google&src=google&albch=shopping&acnt=494-037-6276&isdl=y&slnk=&plac=&mtctp=&albbt=Google_7_shopping&aff_platform=google&aff_short_key=UneMJZVf&&albagn=888888&albcp=7386552844&albag=80241711349&trgt=539263010115&crea=en4000180793880&netw=u&device=c&gclid=EAIaIQobChMI_5PT2vTV5QIVBp6fCh3xawQXEAQYASABEgK3I_D_BwE&gclsrc=aw.ds) |
 | 22.95$ | [Adafruit Feather HUZZAH with ESP8266 WiFi](https://www.buyapi.ca/product/adafruit-feather-huzzah-with-esp8266-wifi/) |
 | CA$8.68 | [ESP32 Development Board WiFi+bluetooth Ultra Low Power Consumption Dual Cores ESP-32 ESP-32S Board Geekcreit for Arduino - products that work with official Arduino boards](https://www.banggood.com/ESP32-Development-Board-WiFibluetooth-Ultra-Low-Power-Consumption-Dual-Cores-ESP-32-ESP-32S-Board-p-1109512.html?p=MA240439985285201910&cur_warehouse=CN) |
-| CA$12.02 | [LILYGO® TTGO T-Energy ESP32 8MByte PSRAM WiFi bluetooth Module 18650 Battery ESP32-WROVER-IB Development Board
-](https://www.banggood.com/LILYGO-TTGO-T-Energy-ESP32-8MByte-PSRAM-WiFi-bluetooth-Module-18650-Battery-ESP32-WROVER-IB-Development-Board-p-1427125.html?p=MA240439985285201910&cur_warehouse=CN) |
+| CA$12.02 | [LILYGO® TTGO T-Energy ESP32 8MByte PSRAM WiFi bluetooth Module 18650 Battery ESP32-WROVER-IB Development Board](https://www.banggood.com/LILYGO-TTGO-T-Energy-ESP32-8MByte-PSRAM-WiFi-bluetooth-Module-18650-Battery-ESP32-WROVER-IB-Development-Board-p-1427125.html?p=MA240439985285201910&cur_warehouse=CN) |
 | CA$13.35 | [Geekcreit ESP32 OLED Module For ESP32 OLED WiFi + bluetooth Dual ESP-32 ESP-32S ESP8266 OLED Module](https://www.banggood.com/Geekcreit-ESP32-OLED-Module-For-Arduino-ESP32-OLED-WiFi-bluetooth-Dual-ESP-32-ESP-32S-ESP8266-p-1148119.html?p=MA240439985285201910&cur_warehouse=CN) |
-| CA$9.34 | [ESP32-CAM WiFi + bluetooth Camera Module Development Board ESP32 With Camera Module OV2640 Geekcreit for Arduino - products that work with official Arduino boards
-](https://www.banggood.com/ESP32-CAM-WiFi-bluetooth-Camera-Module-Development-Board-ESP32-With-Camera-Module-OV2640-p-1394679.html?rmmds=category&cur_warehouse=CN) |
+| CA$9.34 | [ESP32-CAM WiFi + bluetooth Camera Module Development Board ESP32 With Camera Module OV2640 Geekcreit for Arduino - products that work with official Arduino boards](https://www.banggood.com/ESP32-CAM-WiFi-bluetooth-Camera-Module-Development-Board-ESP32-With-Camera-Module-OV2640-p-1394679.html?rmmds=category&cur_warehouse=CN) |
 
 
 ## Tutorial
