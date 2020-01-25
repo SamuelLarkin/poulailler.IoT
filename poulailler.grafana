@@ -120,7 +120,7 @@
       "targets": [
         {
           "groupBy": [],
-          "measurement": "temperature",
+          "measurement": "metrics",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -129,13 +129,19 @@
             [
               {
                 "params": [
-                  "value"
+                  "temperature"
                 ],
                 "type": "field"
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "sensor",
+              "operator": "=",
+              "value": "1"
+            }
+          ]
         }
       ],
       "timeFrom": null,
@@ -191,7 +197,7 @@
         {
           "alias": "temperature",
           "groupBy": [],
-          "measurement": "temperature",
+          "measurement": "metrics",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -200,13 +206,19 @@
             [
               {
                 "params": [
-                  "value"
+                  "temperature"
                 ],
                 "type": "field"
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "sensor",
+              "operator": "=",
+              "value": "1"
+            }
+          ]
         },
         {
           "groupBy": [
@@ -223,7 +235,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "temperature",
+          "measurement": "metrics",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -232,7 +244,7 @@
             [
               {
                 "params": [
-                  "value"
+                  "temperature"
                 ],
                 "type": "field"
               },
@@ -242,7 +254,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "sensor",
+              "operator": "=",
+              "value": "1"
+            }
+          ]
         }
       ],
       "thresholds": [],
@@ -334,7 +352,7 @@
       "targets": [
         {
           "groupBy": [],
-          "measurement": "humidite",
+          "measurement": "metrics",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -343,13 +361,19 @@
             [
               {
                 "params": [
-                  "value"
+                  "humidite"
                 ],
                 "type": "field"
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "sensor",
+              "operator": "=",
+              "value": "1"
+            }
+          ]
         }
       ],
       "timeFrom": null,
@@ -403,7 +427,7 @@
         {
           "groupBy": [],
           "hide": false,
-          "measurement": "humidite",
+          "measurement": "metrics",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -412,13 +436,19 @@
             [
               {
                 "params": [
-                  "value"
+                  "humidite"
                 ],
                 "type": "field"
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "sensor",
+              "operator": "=",
+              "value": "1"
+            }
+          ]
         },
         {
           "groupBy": [
@@ -435,7 +465,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "humidite",
+          "measurement": "metrics",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -444,7 +474,7 @@
             [
               {
                 "params": [
-                  "value"
+                  "humidite"
                 ],
                 "type": "field"
               },
@@ -454,7 +484,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "sensor",
+              "operator": "=",
+              "value": "1"
+            }
+          ]
         }
       ],
       "thresholds": [],
