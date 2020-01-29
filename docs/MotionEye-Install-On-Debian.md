@@ -1,6 +1,21 @@
 # MotionEye
-username/password
+username/password \
 admin/
+
+## In Docker
+[Install In Docker](https://github.com/ccrisan/motioneye/wiki/Install-In-Docker)
+```
+docker pull ccrisan/motioneye:master-armhf
+docker run --name="motioneye" \
+    -p 8765:8765 \
+    --hostname="motioneye" \
+    -v /etc/localtime:/etc/localtime:ro \
+    -v /etc/motioneye:/etc/motioneye \
+    -v /var/lib/motioneye:/var/lib/motioneye \
+    --restart="always" \
+    --detach=true \
+    ccrisan/motioneye:master-armhf
+```
 
 ### Before Proceeding
 * Read the general [[Installation|Installation]] page first.
