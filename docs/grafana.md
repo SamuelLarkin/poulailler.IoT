@@ -3,6 +3,7 @@
 http://192.168.X.Y:3000
 
 * [Grafana - Home](https://grafana.com/)
+* [Setting up Grafana on the Raspberry Pi](https://pimylifeup.com/raspberry-pi-grafana/)
 * [Howto Install InfluxDB an Grafana on a Raspberry pi 3](http://blog.centurio.net/2018/10/28/howto-install-influxdb-and-grafana-on-a-raspberry-pi-3/)
 
 ```
