@@ -1,3 +1,7 @@
+# MotionEye
+username/password
+admin/
+
 ### Before Proceeding
 * Read the general [[Installation|Installation]] page first.
 * These instructions apply to Debian and Debian-based distributions. For [[Ubuntu|Install-On-Ubuntu]] and [[Raspbian|Install-On-Raspbian]] however, you should check out their specific instructions.
