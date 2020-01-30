@@ -1,8 +1,13 @@
 # WiFi USB Dongle
 
+* [Drivers for the rtl8192eu chipset for wireless adapters (D-Link DWA-131 rev E1 included!)](https://github.com/Mange/rtl8192eu-linux-driver)
 * [Wlan Stick with RTL8192EU Chipset](https://www.raspberrypi.org/forums/viewtopic.php?t=148389&start=25)
 * [RTL8192EU driver compilation - PKGBUILD](https://archlinuxarm.org/forum/viewtopic.php?f=59&t=8866#p46867)
 * [RTL8192EU Wireless Adapter on Void Linux](https://medium.com/@leandroembu/rtl8192eu-wireless-adapter-on-void-linux-dafc295c6e67)
+* [Installing drivers USB WiFi](https://www.raspberrypi.org/forums/viewtopic.php?t=89447)
+* [How to load or unload a Linux kernel module](https://opensource.com/article/18/5/how-load-or-unload-linux-kernel-module)
+* [Can't install rtl8192eu-linux-driver on UBUNTU 18.10](https://askubuntu.com/questions/1156519/cant-install-rtl8192eu-linux-driver-on-ubuntu-18-10)
+* [Tutorial: Compiling a working kernel driver for rtl8192eu](https://discourse.osmc.tv/t/tutorial-compiling-a-working-kernel-driver-for-rtl8192eu/5252)
 
 
 ```
