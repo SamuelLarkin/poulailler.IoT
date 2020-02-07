@@ -1,3 +1,6 @@
+// [ESP8266 DS18B20 Temperature Sensor with Arduino IDE (Single, Multiple, Web Server)](https://randomnerdtutorials.com/esp8266-ds18b20-temperature-sensor-web-server-with-arduino-ide/)
+// [Arduino the Object Oriented way](http://paulmurraycbr.github.io/ArduinoTheOOWay.html)
+
 // Import required libraries
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
@@ -7,27 +10,46 @@
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
 #include <PubSubClient.h>
+#include <OneWire.h>
+#include <DallasTemperature.h>
 
+#include "html.h"
+#include "credential.h"
 
 
 // Replace with your network credentials
+/*
 const char* ssid="SSID";
-const char* password="PASSWORD";
-const char* mqtt_server = "192.168.X.Y";
+const char* password="SSID_PASSWORD";
+const char* mqtt_server = "192.168.XX.YY";
+*/
 
-#define DHTPIN 5     // Digital pin connected to the DHT sensor
-#define DHTTYPE    DHT22     // DHT 22 (AM2302)
+
+#define DHTPIN  5       // Digital pin connected to the DHT sensor
+#define DHTTYPE DHT22   // DHT 22 (AM2302)
 DHT dht(DHTPIN, DHTTYPE);
 
 // current temperature & humidity, updated in loop()
 float t = -100.0;
 float h = -100.0;
 
+
+// GPIO where the DS18B20 is connected to
+const int oneWireBus = 4;     
+
+// Setup a oneWire instance to communicate with any OneWire devices
+OneWire oneWire(oneWireBus);
+
+// Pass our oneWire reference to Dallas Temperature sensor 
+DallasTemperature sensors(&oneWire);
+
+
 // Create AsyncWebServer object on port 80
-AsyncWebServer server(80);
+AsyncWebServer web_server(80);
 
 WiFiClient espClient;
-PubSubClient client(espClient);
+PubSubClient mqtt_client(espClient);
+
 
 // Generally, you should use "unsigned long" for variables that hold time
 // The value will quickly become too large for an int to store
@@ -36,68 +58,8 @@ unsigned long previousMillis = 0;    // will store last time DHT was updated
 // Updates DHT readings every 10 seconds
 const long interval = 10000;  
 
-const char index_html[] PROGMEM = R"rawliteral(
-<!DOCTYPE HTML><html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <style>
-    html {
-     font-family: Arial;
-     display: inline-block;
-     margin: 0px auto;
-     text-align: center;
-    }
-    h2 { font-size: 3.0rem; }
-    p { font-size: 3.0rem; }
-    .units { font-size: 1.2rem; }
-    .dht-labels{
-      font-size: 1.5rem;
-      vertical-align:middle;
-      padding-bottom: 15px;
-    }
-  </style>
-</head>
-<body>
-  <h2>ESP8266 DHT Server</h2>
-  <p>
-    <i class="fas fa-thermometer-half" style="color:#059e8a;"></i> 
-    <span class="dht-labels">Temperature</span> 
-    <span id="temperature">%TEMPERATURE%</span>
-    <sup class="units">&deg;C</sup>
-  </p>
-  <p>
-    <i class="fas fa-tint" style="color:#00add6;"></i> 
-    <span class="dht-labels">Humidity</span>
-    <span id="humidity">%HUMIDITY%</span>
-    <sup class="units">%</sup>
-  </p>
-</body>
-<script>
-setInterval(function ( ) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("temperature").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "/temperature", true);
-  xhttp.send();
-}, 10000 ) ;
 
-setInterval(function ( ) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("humidity").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "/humidity", true);
-  xhttp.send();
-}, 10000 ) ;
-</script>
-</html>)rawliteral";
+
 
 // Replaces placeholder with DHT values
 String processor(const String& var){
@@ -137,54 +99,59 @@ void setup_wifi() {
 
 
 
-void setup_web_server() {
+void setup_web_server(AsyncWebServer& web_server) {
   // Route for root / web page
-  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
+  web_server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send_P(200, "text/html", index_html, processor);
   });
-  server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest *request){
+  web_server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send_P(200, "text/plain", String(t).c_str());
   });
-  server.on("/humidity", HTTP_GET, [](AsyncWebServerRequest *request){
+  web_server.on("/humidity", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send_P(200, "text/plain", String(h).c_str());
   });
 
   // Start server
-  server.begin();
+  web_server.begin();
 }
 
 
 
-void setup(){
+void setup_serial() {
   // Serial port for debugging purposes
   Serial.begin(115200);
-  dht.begin();
-
-  setup_wifi();
-  setup_web_server();
-
-  client.setServer(mqtt_server, 1883);
+    // wait for serial monitor to open
+  while(! Serial);
 }
 
 
 
-void reconnect() {
+void setup_sensors(DHT& dht, DallasTemperature& sensors) {
+  dht.begin();
+
+  // Start the DS18B20 sensor
+  sensors.begin();
+}
+
+
+
+void reconnect_mqtt() {
   // Loop until we're reconnected
-  while (!client.connected()) {
+  while (!mqtt_client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Create a random client ID
     String clientId = "ESP8266Client-";
     clientId += String(random(0xffff), HEX);
     // Attempt to connect
-    if (client.connect(clientId.c_str())) {
+    if (mqtt_client.connect(clientId.c_str())) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      //client.publish("poulailler", "hello world");
+      //mqtt_client.publish("poulailler", "hello world");
       // ... and resubscribe
-      //client.subscribe("inTopic");
+      //mqtt_client.subscribe("inTopic");
     } else {
       Serial.print("failed, rc=");
-      Serial.print(client.state());
+      Serial.print(mqtt_client.state());
       Serial.println(" try again in 5 seconds");
       // Wait 5 seconds before retrying
       delay(5000);
@@ -195,16 +162,28 @@ void reconnect() {
 
 
  
+void setup(){
+  setup_serial();
+  setup_sensors(dht, sensors);
+  setup_wifi();
+  setup_web_server(web_server);
+
+  mqtt_client.setServer(mqtt_server, 1883);
+}
+
+
+
 void loop(){  
-  if (!client.connected()) {
-    reconnect();
+  if (!mqtt_client.connected()) {
+    reconnect_mqtt();
   }
-  client.loop();
+  mqtt_client.loop();
   
   const unsigned long currentMillis = millis();
   if (currentMillis - previousMillis >= interval) {
     // save the last time you updated the DHT values
     previousMillis = currentMillis;
+    
     // Read temperature as Celsius (the default)
     const float newT = dht.readTemperature();
     // if temperature read failed, don't change t value
@@ -231,8 +210,12 @@ void loop(){
       Serial.println(h);
     }
 
-    //client.publish("poulailler/temperature", String(t).c_str());
-    //client.publish("poulailler/humidite", String(h).c_str());
-    client.publish("poulailler/sensor_1", (String("{\"temperature\":") + String(t) + String(",\"humidite\":") + String(h) + String("}")).c_str());
+    //mqtt_client.publish("poulailler/temperature", String(t).c_str());
+    //mqtt_client.publish("poulailler/humidite", String(h).c_str());
+    mqtt_client.publish("poulailler/sensor_1", (String("{\"temperature\":") + String(t) + String(",\"humidite\":") + String(h) + String("}")).c_str());
+
+    sensors.requestTemperatures(); 
+    const float temperatureC = sensors.getTempCByIndex(0);
+    mqtt_client.publish("poulailler/sensor_2", (String("{\"temperature\":") + String(temperatureC) + String(",\"humidite\": -100}")).c_str());
   }
 }
