@@ -42,7 +42,13 @@ const char index_html[] PROGMEM = R"rawliteral(
     <i class="fas fa-tint" style="color:#00add6;"></i> 
     <span class="dht-labels">Humidity</span>
     <span id="humidity">%HUMIDITY%</span>
-    <sup class="units">%</sup>
+    <sup class="units">&#37;</sup>
+  </p>
+  <p>
+    <i class="fas fa-thermometer-half" style="color:#059e8a;"></i> 
+    <span class="dht-labels">DS18B20 Temperature</span> 
+    <span id="DS18B20_temperature">%DTEMPERATURE%</span>
+    <sup class="units">&deg;C</sup>
   </p>
 </body>
 
@@ -57,7 +63,7 @@ const char index_html[] PROGMEM = R"rawliteral(
     xhttp.open("GET", "/temperature", true);
     xhttp.send();
   }, 10000 ) ;
-  
+
   setInterval(function ( ) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -66,6 +72,17 @@ const char index_html[] PROGMEM = R"rawliteral(
       }
     };
     xhttp.open("GET", "/humidity", true);
+    xhttp.send();
+  }, 10000 ) ;
+
+  setInterval(function ( ) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("DS18B20_temperature").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "/DS18B20/temperature", true);
     xhttp.send();
   }, 10000 ) ;
 </script>
