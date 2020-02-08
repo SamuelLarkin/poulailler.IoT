@@ -30,8 +30,8 @@ const char* mqtt_server = "192.168.XX.YY";
 DHT dht(DHTPIN, DHTTYPE);
 
 // current temperature & humidity, updated in loop()
-float t = -100.0;
-float h = -100.0;
+float DHT22_temperature = -100.0;
+float DHT22_humidity = -100.0;
 
 
 // GPIO where the DS18B20 is connected to
@@ -42,6 +42,8 @@ OneWire oneWire(oneWireBus);
 
 // Pass our oneWire reference to Dallas Temperature sensor 
 DallasTemperature sensors(&oneWire);
+
+float DS18B20_temperature = -100.0;
 
 
 // Create AsyncWebServer object on port 80
@@ -62,13 +64,17 @@ const long interval = 10000;
 
 
 // Replaces placeholder with DHT values
+// The async web server uses template/ %variable% that can be replaced programatically.
 String processor(const String& var){
   //Serial.println(var);
   if(var == "TEMPERATURE"){
-    return String(t);
+    return String(DHT22_temperature);
   }
   else if(var == "HUMIDITY"){
-    return String(h);
+    return String(DHT22_humidity);
+  }
+  else if(var == "DTEMPERATURE"){
+    return String(DS18B20_temperature);
   }
   return String();
 }
@@ -104,11 +110,17 @@ void setup_web_server(AsyncWebServer& web_server) {
   web_server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send_P(200, "text/html", index_html, processor);
   });
+
   web_server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send_P(200, "text/plain", String(t).c_str());
+    request->send_P(200, "text/plain", String(DHT22_temperature).c_str());
   });
+
   web_server.on("/humidity", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send_P(200, "text/plain", String(h).c_str());
+    request->send_P(200, "text/plain", String(DHT22_humidity).c_str());
+  });
+
+  web_server.on("/DS18B20/temperature", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send_P(200, "text/plain", String(DS18B20_temperature).c_str());
   });
 
   // Start server
@@ -189,13 +201,14 @@ void loop(){
     // if temperature read failed, don't change t value
     if (isnan(newT)) {
       Serial.println("Failed to read from DHT sensor!");
-      t = -200.0;
+      DHT22_temperature = -200.0;
     }
     else {
-      t = newT;
-      Serial.print("DHT22 ");
-      Serial.print(String(currentMillis) + ': ');
-      Serial.println(t);
+      DHT22_temperature = newT;
+      Serial.print(String(currentMillis) + " - ");
+      Serial.print("DHT22: ");
+      Serial.print(DHT22_temperature);
+      Serial.println("°C");
     }
 
     // Read Humidity
@@ -203,25 +216,27 @@ void loop(){
     // if humidity read failed, don't change h value 
     if (isnan(newH)) {
       Serial.println("Failed to read from DHT sensor!");
-      h = -200.0;
+      DHT22_humidity = -200.0;
     }
     else {
-      h = newH;
-      Serial.print("DHT22 ");
-      Serial.print(String(currentMillis) + ': ');
-      Serial.println(h);
+      DHT22_humidity = newH;
+      Serial.print(String(currentMillis) + " - ");
+      Serial.print("DHT22: ");
+      Serial.print(DHT22_humidity);
+      Serial.println("%H");
     }
 
-    //mqtt_client.publish("poulailler/temperature", String(t).c_str());
-    //mqtt_client.publish("poulailler/humidite", String(h).c_str());
-    mqtt_client.publish("poulailler/sensor_1", (String("{\"temperature\":") + String(t) + String(",\"humidite\":") + String(h) + String("}")).c_str());
+    //mqtt_client.publish("poulailler/temperature", String(DHT22_temperature).c_str());
+    //mqtt_client.publish("poulailler/humidite", String(DHT22_humidity).c_str());
+    mqtt_client.publish("poulailler/sensor_1", (String("{\"temperature\":") + String(DHT22_temperature) + String(",\"humidite\":") + String(DHT22_humidity) + String("}")).c_str());
 
     sensors.requestTemperatures(); 
-    const float temperatureC = sensors.getTempCByIndex(0);
+    DS18B20_temperature = sensors.getTempCByIndex(0);
+    Serial.print(String(currentMillis) + " - ");
     Serial.print("DS18B20: ");
-    Serial.print(String(currentMillis) + ': ');
-    Serial.println(temperatureC);
-    //mqtt_client.publish("poulailler/sensor_2", (String("{\"temperature\":") + String(temperatureC) + String(",\"humidite\": -100}")).c_str());
-    mqtt_client.publish("poulailler/sensor_2", (String("{\"temperature\":") + String(temperatureC) + String("}")).c_str());
+    Serial.print(DS18B20_temperature);
+    Serial.println("°C");
+    //mqtt_client.publish("poulailler/sensor_2", (String("{\"temperature\":") + String(DS18B20_temperature) + String(",\"humidite\": -100}")).c_str());
+    mqtt_client.publish("poulailler/sensor_2", (String("{\"temperature\":") + String(DS18B20_temperature) + String("}")).c_str());
   }
 }
