@@ -193,7 +193,8 @@ void loop(){
     }
     else {
       t = newT;
-      Serial.print(String(currentMillis) + ' ');
+      Serial.print("DHT22 ");
+      Serial.print(String(currentMillis) + ': ');
       Serial.println(t);
     }
 
@@ -206,7 +207,8 @@ void loop(){
     }
     else {
       h = newH;
-      Serial.print(String(currentMillis) + ' ');
+      Serial.print("DHT22 ");
+      Serial.print(String(currentMillis) + ': ');
       Serial.println(h);
     }
 
@@ -216,6 +218,10 @@ void loop(){
 
     sensors.requestTemperatures(); 
     const float temperatureC = sensors.getTempCByIndex(0);
-    mqtt_client.publish("poulailler/sensor_2", (String("{\"temperature\":") + String(temperatureC) + String(",\"humidite\": -100}")).c_str());
+    Serial.print("DS18B20: ");
+    Serial.print(String(currentMillis) + ': ');
+    Serial.println(temperatureC);
+    //mqtt_client.publish("poulailler/sensor_2", (String("{\"temperature\":") + String(temperatureC) + String(",\"humidite\": -100}")).c_str());
+    mqtt_client.publish("poulailler/sensor_2", (String("{\"temperature\":") + String(temperatureC) + String("}")).c_str());
   }
 }
