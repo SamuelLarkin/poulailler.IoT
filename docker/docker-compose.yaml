@@ -1,0 +1,99 @@
+version: "3"
+# vim:expandtab:shiftwidth=3:tabstop=3
+
+services:
+   # [](https://github.com/owntracks/docker-recorder)
+   mosquitto:
+      container_name: mosquitto
+      image: eclipse-mosquitto
+      hostname: mosquitto
+      expose:
+         - 1883
+         - 9001
+      ports:
+         - 1883:1883
+         - 9001:9001
+      volumes:
+        - ./data/mosquitto:/mosquitto
+        #- mosquitto-data:/mosquitto/data
+        #- mosquitto-logs:/mosquitto/logs
+        #- mosquitto-conf:/mosquitto/config
+      networks:
+        - default
+      privileged: true
+      restart: always
+
+
+   influxdb:
+      container_name: influxdb
+      image: influxdb:1.7.9
+      hostname: influxdb
+      volumes:
+         - ./data/influxdb/etc:/etc/influxdb
+         - influxdb-lib:/var/lib/influxdb
+      env_file:
+         - ./poulailler.env
+      environment:
+         - INFLUXDB_DB=poulailler
+         - INFLUXDB_ADMIN_USER=${INFLUXDB_USERNAME}
+         - INFLUXDB_ADMIN_PASSWORD=${INFLUXDB_PASSWORD}
+      ports:
+         - 8083:8083
+         - 8086:8086
+      privileged: true
+      restart: always
+      privileged: true
+
+
+   # [](https://nodered.org/docs/getting-started/docker)
+   nodered:
+      container_name: nodered
+      image: nodered/node-red:1.0.3-4-12-arm64v8
+      hostname: nodered
+      ports:
+         - 1880:1880
+      environment:
+         - GF_INSTALL_PLUGINS=node-red-dashboard,node-red-contrib-influxdb,node-red-contrib-play-audio
+      restart: always
+      environment:
+         - TZ=America/New_York
+      depends_on:
+         - mosquitto
+         - influxdb
+
+
+   grafana:
+      container_name: grafana
+      image: grafana/grafana:6.5.2
+      hostname: grafana
+      volumes:
+         - ./data/grafana/etc:/etc/grafana:ro
+         - grafana-lib:/var/lib/grafana
+         - grafana-log:/var/log/grafana
+      links:
+         - influxdb:influxdb
+      environment:
+         - GF_INSTALL_PLUGINS=grafana-clock-panel,briangann-gauge-panel,natel-plotly-panel,grafana-simple-json-datasource
+      env_file:
+         - ./poulailler.env
+      ports:
+         - 3000:3000
+      depends_on:
+         - influxdb
+      privileged: true
+      restart: always
+
+
+volumes:
+   influxdb-lib:
+      external: false
+
+   grafana-lib:
+      external: false
+
+   grafana-log:
+      external: false
+
+   #mosquitto-data:
+   #mosquitto-logs:
+   #mosquitto-conf:
