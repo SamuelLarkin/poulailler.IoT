@@ -46,17 +46,20 @@ services:
 
 
    # [](https://nodered.org/docs/getting-started/docker)
+   # [](https://github.com/node-red/node-red-docker)
    nodered:
       container_name: nodered
-      image: nodered/node-red:1.0.3-4-12-arm64v8
+      image: nodered/node-red:1.0.3-4-12
       hostname: nodered
+      volumes:
+         - ./data/nodered:/data
       ports:
          - 1880:1880
-      environment:
-         - GF_INSTALL_PLUGINS=node-red-dashboard,node-red-contrib-influxdb,node-red-contrib-play-audio
       restart: always
       environment:
          - TZ=America/New_York
+         # Use the poulailler flow.
+         - FLOWS=flows_poulailler.json
       depends_on:
          - mosquitto
          - influxdb
