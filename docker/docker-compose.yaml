@@ -29,8 +29,8 @@ services:
       image: influxdb:1.7.9
       hostname: influxdb
       volumes:
-         - ./data/influxdb/etc:/etc/influxdb
          - influxdb-lib:/var/lib/influxdb
+         - ./data/influxdb/etc:/etc/influxdb:ro
          # https://www.influxdata.com/blog/how-to-setup-influxdb-telegraf-and-grafana-on-docker-part-1/
          - ./data/influxdb/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
       env_file:
