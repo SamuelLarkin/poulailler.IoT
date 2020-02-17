@@ -31,10 +31,12 @@ services:
       volumes:
          - ./data/influxdb/etc:/etc/influxdb
          - influxdb-lib:/var/lib/influxdb
+         # https://www.influxdata.com/blog/how-to-setup-influxdb-telegraf-and-grafana-on-docker-part-1/
+         - ./data/influxdb/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
       env_file:
          - ./poulailler.env
       environment:
-         - INFLUXDB_DB=poulailler
+         #- INFLUXDB_DB=poulailler
          - INFLUXDB_ADMIN_USER=${INFLUXDB_USERNAME}
          - INFLUXDB_ADMIN_PASSWORD=${INFLUXDB_PASSWORD}
       ports:
