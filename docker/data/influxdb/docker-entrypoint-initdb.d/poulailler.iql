@@ -1,10 +1,5 @@
 CREATE DATABASE poulailler WITH DURATION 1d REPLICATION 1 NAME jour
-
 CREATE RETENTION POLICY semaine ON "poulailler" DURATION 1w  REPLICATION 1
 CREATE RETENTION POLICY annee   ON "poulailler" DURATION 52w REPLICATION 1
-
 CREATE CONTINUOUS QUERY cq_2m ON poulailler BEGIN SELECT mean(temperature) AS temperature, mean(humidite) AS humidite INTO poulailler.semaine.metrics FROM metrics GROUP BY time(2m),* END
-
 CREATE CONTINUOUS QUERY cq_15m ON poulailler BEGIN SELECT mean(temperature) AS temperature, mean(humidite) AS humidite INTO poulailler.annee.metrics FROM metrics GROUP BY time(15m),* END
-
-
