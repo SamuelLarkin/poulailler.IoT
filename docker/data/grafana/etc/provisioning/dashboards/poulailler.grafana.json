@@ -16,30 +16,32 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
-  "links": [
-    {
-      "icon": "external link",
-      "tags": [],
-      "title": "node-red",
-      "type": "link",
-      "url": "192.168.81.71:1880/ui"
-    },
-    {
-      "icon": "external link",
-      "tags": [],
-      "title": "Arduino",
-      "type": "link",
-      "url": "192.168.81.90"
-    }
-  ],
+  "links": [],
   "panels": [
+    {
+      "content": "# Acces au Arduino\n\n[Metriques du Arduino](http://192168.81.90)\n\n# Acces a node-red\n\n[node-red](192.168.81.72:1880/ui)\n\n",
+      "datasource": null,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 10,
+      "mode": "markdown",
+      "options": {},
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Autre moyens d'acceder au metriques",
+      "type": "text"
+    },
     {
       "datasource": null,
       "gridPos": {
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 0
+        "y": 5
       },
       "id": 6,
       "options": {
@@ -80,7 +82,7 @@
         "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.5.3",
+      "pluginVersion": "6.5.2",
       "targets": [
         {
           "alias": "Température",
@@ -120,7 +122,7 @@
         "h": 9,
         "w": 6,
         "x": 6,
-        "y": 0
+        "y": 5
       },
       "id": 8,
       "options": {
@@ -157,7 +159,7 @@
         "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.5.3",
+      "pluginVersion": "6.5.2",
       "targets": [
         {
           "alias": "Humidité",
@@ -211,7 +213,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 14
       },
       "hiddenSeries": false,
       "id": 2,
@@ -404,8 +406,8 @@
           "format": "celsius",
           "label": "Température",
           "logBase": 1,
-          "max": "40",
-          "min": "-30",
+          "max": null,
+          "min": null,
           "show": true
         },
         {
@@ -437,7 +439,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 21
+        "y": 26
       },
       "hiddenSeries": false,
       "id": 4,
@@ -607,5 +609,5 @@
   "timezone": "",
   "title": "Poulailler",
   "uid": "Hwg1o6mgk",
-  "version": 25
+  "version": 4
 }
