@@ -29,6 +29,11 @@ usrgroup -aG video pi
 ```
 
 ```
+sudo systemctl status avahi-daemon.service
+```
+
+
+```
 docker \
   run \
     --name="motioneye" \
