@@ -12,26 +12,12 @@
       }
     ]
   },
+  "description": "Température & Humidité dans notre poulailler",
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
-  "links": [
-    {
-      "icon": "external link",
-      "tags": [],
-      "title": "node-red",
-      "type": "link",
-      "url": "192.168.81.71:1880/ui"
-    },
-    {
-      "icon": "external link",
-      "tags": [],
-      "title": "Arduino",
-      "type": "link",
-      "url": "192.168.81.90"
-    }
-  ],
+  "links": [],
   "panels": [
     {
       "datasource": null,
@@ -80,7 +66,7 @@
         "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.5.3",
+      "pluginVersion": "6.5.2",
       "targets": [
         {
           "alias": "Température",
@@ -157,7 +143,7 @@
         "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.5.3",
+      "pluginVersion": "6.5.2",
       "targets": [
         {
           "alias": "Humidité",
@@ -404,8 +390,8 @@
           "format": "celsius",
           "label": "Température",
           "logBase": 1,
-          "max": "40",
-          "min": "-30",
+          "max": null,
+          "min": null,
           "show": true
         },
         {
@@ -577,6 +563,23 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "content": "# Acces au Arduino\n\n[Metriques du Arduino](http://192168.81.90)\n\n# Acces a node-red\n\n[node-red](192.168.81.72:1880/ui)\n\n# Camera\n\n* [Camera 1](http://192.168.81.70:8081/)\n* [Camera nocturne](rtsp://192.168.81.98/live/profile.0)",
+      "datasource": null,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 30
+      },
+      "id": 10,
+      "mode": "markdown",
+      "options": {},
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Autre moyens d'acceder au metriques",
+      "type": "text"
     }
   ],
   "refresh": "1m",
@@ -592,7 +595,6 @@
   },
   "timepicker": {
     "refresh_intervals": [
-      "5s",
       "10s",
       "30s",
       "1m",
@@ -607,5 +609,5 @@
   "timezone": "",
   "title": "Poulailler",
   "uid": "Hwg1o6mgk",
-  "version": 25
+  "version": 7
 }
