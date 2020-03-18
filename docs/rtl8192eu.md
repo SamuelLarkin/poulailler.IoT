@@ -9,6 +9,11 @@
 * [Can't install rtl8192eu-linux-driver on UBUNTU 18.10](https://askubuntu.com/questions/1156519/cant-install-rtl8192eu-linux-driver-on-ubuntu-18-10)
 * [Tutorial: Compiling a working kernel driver for rtl8192eu](https://discourse.osmc.tv/t/tutorial-compiling-a-working-kernel-driver-for-rtl8192eu/5252)
 
+# Prerequisites
+
+```
+sudo apt-get install git raspberrypi-kernel-headers build-essential dkms
+```
 
 ```
 git clone https://github.com/jeremyb31/rtl8192eu-linux-driver
@@ -45,6 +50,13 @@ index a9d4b93..3938197 100644
  EXTRA_CFLAGS += -DCONFIG_APPEND_VENDOR_IE_ENABLE
  endif
 ```
+
+```
+sudo dkms add .
+$ sudo dkms install rtl8192eu/1.0
+```
+
+# Other Notes
 
 ```
 make
