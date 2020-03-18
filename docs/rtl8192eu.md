@@ -1,6 +1,7 @@
 # WiFi USB Dongle
 
 * [Drivers for the rtl8192eu chipset for wireless adapters (D-Link DWA-131 rev E1 included!)](https://github.com/Mange/rtl8192eu-linux-driver)
+* [How to connect a Raspberry Pi to a Wifi network from the command line](https://theembeddedlab.com/tutorials/raspberry-pi-connect-wifi-network/)
 * [Wlan Stick with RTL8192EU Chipset](https://www.raspberrypi.org/forums/viewtopic.php?t=148389&start=25)
 * [RTL8192EU driver compilation - PKGBUILD](https://archlinuxarm.org/forum/viewtopic.php?f=59&t=8866#p46867)
 * [RTL8192EU Wireless Adapter on Void Linux](https://medium.com/@leandroembu/rtl8192eu-wireless-adapter-on-void-linux-dafc295c6e67)
@@ -55,6 +56,18 @@ index a9d4b93..3938197 100644
 sudo dkms add .
 $ sudo dkms install rtl8192eu/1.0
 ```
+
+## Create a file for wlan0 to get its ip
+
+`/etc/network/interfaces.d/wlan0`
+
+```
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+```
+
+
 
 # Other Notes
 
