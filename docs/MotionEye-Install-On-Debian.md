@@ -7,13 +7,14 @@ admin/
 ```
 docker pull ccrisan/motioneye:master-armhf
 docker run --name="motioneye" \
-    -p 8765:8765 \
-    --hostname="motioneye" \
-    -v /etc/localtime:/etc/localtime:ro \
-    -v /etc/motioneye:/etc/motioneye \
-    -v /var/lib/motioneye:/var/lib/motioneye \
-    --restart="always" \
     --detach=true \
+    --restart="always" \
+    --hostname="motioneye" \
+    --device=/dev/video0 \
+    --publish=8765:8765 \
+    --volume=/etc/localtime:/etc/localtime:ro \
+    --volume=/etc/motioneye:/etc/motioneye \
+    --volume=/var/lib/motioneye:/var/lib/motioneye \
     ccrisan/motioneye:master-armhf
 ```
 
