@@ -21,3 +21,11 @@ docker \
     --volume portainer_data:/data \
     portainer/portainer
 ```
+
+# IMPORTANT NOTE
+
+We MUST remove configparser in order to get 'docker-compose` to work
+
+```
+sudo apt-get remove python-configparser
+```
