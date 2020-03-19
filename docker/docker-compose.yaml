@@ -2,7 +2,7 @@ version: "3"
 # vim:expandtab:shiftwidth=3:tabstop=3
 
 services:
-   # [](https://github.com/owntracks/docker-recorder)
+   # [Docker image for OwnTracks Recorder](https://github.com/owntracks/docker-recorder)
    mosquitto:
       container_name: mosquitto
       image: eclipse-mosquitto
@@ -31,8 +31,8 @@ services:
       volumes:
          - influxdb-lib:/var/lib/influxdb
          - ./data/influxdb/etc:/etc/influxdb:ro
-         # https://www.influxdata.com/blog/how-to-setup-influxdb-telegraf-and-grafana-on-docker-part-1/
-         # [](https://hub.docker.com/_/influxdb)
+         # [How to Setup InfluxDB, Telegraf and Grafana on Docker: Part 1](https://www.influxdata.com/blog/how-to-setup-influxdb-telegraf-and-grafana-on-docker-part-1/)
+         # [Docker Hub - Influxdb](https://hub.docker.com/_/influxdb)
          # If the Docker image finds any files with the extensions .sh or .iql
          # inside of the /docker-entrypoint-initdb.d folder, it will execute
          # them. The order they are executed in is determined by the shell.
@@ -52,8 +52,8 @@ services:
       privileged: true
 
 
-   # [](https://nodered.org/docs/getting-started/docker)
-   # [](https://github.com/node-red/node-red-docker)
+   # [Running under Docker](https://nodered.org/docs/getting-started/docker)
+   # [Repository for all things Node-RED and Docker related](https://github.com/node-red/node-red-docker)
    nodered:
       container_name: nodered
       image: nodered/node-red:1.0.3-4-12
