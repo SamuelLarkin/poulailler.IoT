@@ -1,9 +1,11 @@
 // [ESP8266 DS18B20 Temperature Sensor with Arduino IDE (Single, Multiple, Web Server)](https://randomnerdtutorials.com/esp8266-ds18b20-temperature-sensor-web-server-with-arduino-ide/)
 // [Arduino the Object Oriented way](http://paulmurraycbr.github.io/ArduinoTheOOWay.html)
+// [Multicast Domain Name System](https://tttapa.github.io/ESP8266/Chap08%20-%20mDNS.html)
 
 // Import required libraries
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
+#include <ESP8266mDNS.h>        // Include the mDNS library
 #include <Hash.h>
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
@@ -81,6 +83,17 @@ String processor(const String& var){
 
 
 
+void setup_mDNS() {
+   if (!MDNS.begin("poulailler")) {             // Start the mDNS responder for esp8266.local
+      Serial.println("Error setting up MDNS responder!");
+   }
+   else {
+      Serial.println("mDNS responder started");
+   }
+}
+
+
+
 void setup_wifi() {
   delay(10);
   // We start by connecting to a WiFi network
@@ -101,6 +114,8 @@ void setup_wifi() {
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
+
+  setup_mDNS();
 }
 
 
