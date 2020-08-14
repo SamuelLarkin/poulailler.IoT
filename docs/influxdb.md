@@ -7,6 +7,19 @@ influxdb:8086
 * [influx retention](https://bl.ocks.org/nl-hugo/acf9ceabb9a813d067484d9723ca3f77)
 * [InfluxDB plugin for Node-Red](https://www.npmjs.com/package/node-red-contrib-influxdb)
 
+## CLI / SHELL
+
+Run the influx client in this container:
+
+`docker container exec -it influxdb influx`
+
+```
+SHOW DATABASES
+USE poulailler
+SELECT * FROM metrics GROUP BY * ORDER BY ASC LIMIT 1
+```
+
+
 
 #### Create a Database
 
