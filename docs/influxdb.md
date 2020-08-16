@@ -14,6 +14,7 @@ Run the influx client in this container:
 `docker container exec -it influxdb influx`
 
 ```
+precision rfc3339
 SHOW DATABASES
 USE poulailler
 SELECT * FROM metrics GROUP BY * ORDER BY ASC LIMIT 1
