@@ -17,6 +17,7 @@ Run the influx client in this container:
 SHOW DATABASES
 USE poulailler
 SELECT * FROM metrics GROUP BY * ORDER BY ASC LIMIT 1
+SELECT * FROM poulailler.annee.metrics LIMIT 10
 ```
 
 
