@@ -22,6 +22,45 @@ SELECT * FROM temperature GROUP BY * ORDER BY DESC LIMIT 10
 SELECT * FROM poulailler.annee.metrics LIMIT 10
 ```
 
+### Examples
+
+#### temperature
+
+```
+SELECT sensor_id, sensor_name, temperature FROM temperature  ORDER BY DESC LIMIT 10
+name: temperature
+time                 sensor_id        sensor_name temperature
+----                 ---------        ----------- -----------
+2020-08-16T20:32:28Z 28d79af039190174 DS18B20     21.13
+2020-08-16T20:32:28Z 28d52c183a190178 DS18B20     20.94
+2020-08-16T20:32:28Z 28c1ce233a19017a DS18B20     21
+2020-08-16T20:32:28Z 289e7f193a1901a1 DS18B20     22.5
+2020-08-16T20:32:28Z 2871d30d3a190188 DS18B20     21
+2020-08-16T20:32:26Z 0                DHT22       -200
+2020-08-16T20:32:18Z 28d79af039190174 DS18B20     21.06
+2020-08-16T20:32:18Z 28d52c183a190178 DS18B20     20.94
+2020-08-16T20:32:18Z 28c1ce233a19017a DS18B20     21
+2020-08-16T20:32:18Z 289e7f193a1901a1 DS18B20     22.5
+```
+
+#### humidity
+
+```
+> SELECT sensor_id, sensor_name, humidity FROM humidity  ORDER BY DESC LIMIT 10
+name: humidity
+time                 sensor_id sensor_name humidity
+----                 --------- ----------- --------
+2020-08-16T20:33:36Z 0         DHT22       -200
+2020-08-16T20:33:26Z 0         DHT22       -200
+2020-08-16T20:33:16Z 0         DHT22       -200
+2020-08-16T20:33:06Z 0         DHT22       -200
+2020-08-16T20:32:56Z 0         DHT22       -200
+2020-08-16T20:32:46Z 0         DHT22       -200
+2020-08-16T20:32:36Z 0         DHT22       -200
+2020-08-16T20:32:26Z 0         DHT22       -200
+2020-08-16T20:32:16Z 0         DHT22       -200
+2020-08-16T20:32:06Z 0         DHT22       -200
+```
 
 
 #### Create a Database
