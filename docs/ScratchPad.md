@@ -119,3 +119,6 @@ v4l2-ctl -c <option>=<value>
 
 
 Microsoft LifeCam VX-1000
+
+
+[Tasmota - Plugs and Sockets](https://templates.blakadder.com/plug.html)
