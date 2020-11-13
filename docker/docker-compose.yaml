@@ -21,7 +21,7 @@ services:
       networks:
         - default
       privileged: true
-      restart: always
+      restart: unless-stopped
 
 
    influxdb:
@@ -49,7 +49,7 @@ services:
          - 8083:8083
          - 8086:8086
       privileged: true
-      restart: always
+      restart: unless-stopped
       privileged: true
 
 
@@ -63,7 +63,7 @@ services:
          - ./data/nodered:/data
       ports:
          - 1880:1880
-      restart: always
+      restart: unless-stopped
       environment:
          - TZ=America/New_York
          # Use the poulailler flow.
@@ -92,7 +92,7 @@ services:
       depends_on:
          - influxdb
       privileged: true
-      restart: always
+      restart: unless-stopped
 
 
 volumes:
