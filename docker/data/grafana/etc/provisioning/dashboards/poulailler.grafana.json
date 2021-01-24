@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -71,7 +71,7 @@
         {
           "alias": "Température",
           "groupBy": [],
-          "measurement": "metrics",
+          "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -88,9 +88,9 @@
           ],
           "tags": [
             {
-              "key": "sensor",
+              "key": "sensor_name",
               "operator": "=",
-              "value": "1"
+              "value": "DHT22"
             }
           ]
         }
@@ -148,16 +148,18 @@
         {
           "alias": "Humidité",
           "groupBy": [],
-          "measurement": "metrics",
+          "measurement": "humidity",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "SELECT \"humidite\" FROM \"humidity\" WHERE (\"sensor_name\" = 'DHT22') AND $timeFilter",
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "humidite"
+                  "humidity"
                 ],
                 "type": "field"
               }
@@ -165,9 +167,9 @@
           ],
           "tags": [
             {
-              "key": "sensor",
+              "key": "sensor_name",
               "operator": "=",
-              "value": "1"
+              "value": "DHT22"
             }
           ]
         }
@@ -191,16 +193,17 @@
       "dashes": false,
       "datasource": null,
       "decimals": 1,
-      "fill": 1,
+      "description": "Température moyenne pour toutes les sondes",
+      "fill": 0,
       "fillGradient": 9,
       "gridPos": {
-        "h": 12,
+        "h": 21,
         "w": 12,
-        "x": 0,
-        "y": 9
+        "x": 12,
+        "y": 0
       },
       "hiddenSeries": false,
-      "id": 2,
+      "id": 14,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -213,7 +216,7 @@
         "values": true
       },
       "lines": true,
-      "linewidth": 1,
+      "linewidth": 2,
       "nullPointMode": "null",
       "options": {
         "dataLinks": []
@@ -222,39 +225,19 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "DHT22 Humidty",
+          "linewidth": 5,
+          "yaxis": 2
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "alias": "DHT22 Température",
-          "groupBy": [],
-          "measurement": "metrics",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "sensor",
-              "operator": "=",
-              "value": "1"
-            }
-          ]
-        },
-        {
-          "alias": "DHT22 Température moyenne",
+          "alias": "DHT22",
           "groupBy": [
             {
               "params": [
@@ -269,7 +252,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "metrics",
+          "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -290,40 +273,20 @@
           ],
           "tags": [
             {
-              "key": "sensor",
+              "key": "sensor_name",
               "operator": "=",
-              "value": "1"
-            }
-          ]
-        },
-        {
-          "alias": "DS18B20 Température",
-          "groupBy": [],
-          "measurement": "metrics",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temperature"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": [
+              "value": "DHT22"
+            },
             {
-              "key": "sensor",
-              "operator": "=",
-              "value": "2"
+              "condition": "AND",
+              "key": "temperature",
+              "operator": ">",
+              "value": "-50"
             }
           ]
         },
         {
-          "alias": "DS18B20 Température moyenne",
+          "alias": "DS18B20 A1 Porte",
           "groupBy": [
             {
               "params": [
@@ -338,7 +301,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "metrics",
+          "measurement": "temperature",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "D",
@@ -359,9 +322,260 @@
           ],
           "tags": [
             {
-              "key": "sensor",
+              "key": "sensor_name",
               "operator": "=",
-              "value": "2"
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "289e7f193a1901a1"
+            }
+          ]
+        },
+        {
+          "alias": "DS18B20 7A Fenêtre",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "28c1ce233a19017a"
+            }
+          ]
+        },
+        {
+          "alias": "DS18B20 88 Trappe",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "2871d30d3a190188"
+            }
+          ]
+        },
+        {
+          "alias": "DS18B20 78 Libre",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "28d52c183a190178"
+            }
+          ]
+        },
+        {
+          "alias": "DS18B20 74 Abreuvoir",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "F",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "28d79af039190174"
+            }
+          ]
+        },
+        {
+          "alias": "DHT22 Humidty",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "humidity",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "G",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "humidity"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DHT22"
+            },
+            {
+              "condition": "AND",
+              "key": "humidity",
+              "operator": ">",
+              "value": "0"
             }
           ]
         }
@@ -370,7 +584,748 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Température",
+      "title": "Température moyenne",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 1,
+          "format": "celsius",
+          "label": "Température",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "decimals": 1,
+          "format": "humidity",
+          "label": null,
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": null,
+      "description": "Température moyenne pour toutes les sondes",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id": 13,
+      "options": {
+        "displayMode": "lcd",
+        "fieldOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "defaults": {
+            "decimals": 1,
+            "mappings": [],
+            "max": 40,
+            "min": -30,
+            "thresholds": [
+              {
+                "color": "dark-blue",
+                "value": null
+              },
+              {
+                "color": "light-blue",
+                "value": -10
+              },
+              {
+                "color": "dark-green",
+                "value": 0
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 30
+              },
+              {
+                "color": "dark-red",
+                "value": 40
+              }
+            ],
+            "unit": "celsius"
+          },
+          "override": {},
+          "values": false
+        },
+        "orientation": "horizontal"
+      },
+      "pluginVersion": "6.5.2",
+      "targets": [
+        {
+          "alias": "DHT22",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DHT22"
+            },
+            {
+              "condition": "AND",
+              "key": "temperature",
+              "operator": ">",
+              "value": "-50"
+            }
+          ]
+        },
+        {
+          "alias": "DS18B20 A1 Porte",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "289e7f193a1901a1"
+            }
+          ]
+        },
+        {
+          "alias": "DS18B20 7A Fenêtre",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "28c1ce233a19017a"
+            }
+          ]
+        },
+        {
+          "alias": "DS18B20 88 Trappe",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "2871d30d3a190188"
+            }
+          ]
+        },
+        {
+          "alias": "DS18B20 78 Libre",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "28d52c183a190178"
+            }
+          ]
+        },
+        {
+          "alias": "DS18B20 74 Abreuvoir",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "F",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "28d79af039190174"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Température moyenne",
+      "type": "bargauge"
+    },
+    {
+      "aliasColors": {
+        "DHT22 temperature": "dark-green",
+        "DHT22 temperature moyenne": "light-green",
+        "DS18B20 temperature": "dark-blue",
+        "DS18B20 temperature moyenne": "light-blue",
+        "temperature": "semi-dark-purple",
+        "temperature.mean": "semi-dark-orange"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "decimals": 1,
+      "description": "Température moyenne pour toutes les sondes",
+      "fill": 0,
+      "fillGradient": 9,
+      "gridPos": {
+        "h": 16,
+        "w": 12,
+        "x": 0,
+        "y": 18
+      },
+      "hiddenSeries": false,
+      "id": 12,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "DHT22",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DHT22"
+            },
+            {
+              "condition": "AND",
+              "key": "temperature",
+              "operator": ">",
+              "value": "-50"
+            }
+          ]
+        },
+        {
+          "alias": "DS18B20 A1 Porte",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "289e7f193a1901a1"
+            }
+          ]
+        },
+        {
+          "alias": "DS18B20 7A Fenêtre",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "28c1ce233a19017a"
+            }
+          ]
+        },
+        {
+          "alias": "DS18B20 88 Trappe",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "2871d30d3a190188"
+            }
+          ]
+        },
+        {
+          "alias": "DS18B20 78 Libre",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "28d52c183a190178"
+            }
+          ]
+        },
+        {
+          "alias": "DS18B20 74 Abreuvoir",
+          "groupBy": [
+            {
+              "params": [
+                "15m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "F",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "sensor_name",
+              "operator": "=",
+              "value": "DS18B20"
+            },
+            {
+              "condition": "AND",
+              "key": "sensor_id",
+              "operator": "=",
+              "value": "28d79af039190174"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Température moyenne",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -410,6 +1365,8 @@
     },
     {
       "aliasColors": {
+        "Humidité": "light-blue",
+        "Humidité moyenne": "dark-blue",
         "humidite": "semi-dark-blue"
       },
       "bars": false,
@@ -423,7 +1380,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 21
+        "y": 34
       },
       "hiddenSeries": false,
       "id": 4,
@@ -456,7 +1413,7 @@
           "alias": "Humidité",
           "groupBy": [],
           "hide": false,
-          "measurement": "metrics",
+          "measurement": "humidity",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -465,7 +1422,7 @@
             [
               {
                 "params": [
-                  "humidite"
+                  "humidity"
                 ],
                 "type": "field"
               }
@@ -473,9 +1430,9 @@
           ],
           "tags": [
             {
-              "key": "sensor",
-              "operator": "=",
-              "value": "1"
+              "key": "humidity",
+              "operator": ">",
+              "value": "0"
             }
           ]
         },
@@ -495,7 +1452,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "metrics",
+          "measurement": "humidity",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -504,7 +1461,7 @@
             [
               {
                 "params": [
-                  "humidite"
+                  "humidity"
                 ],
                 "type": "field"
               },
@@ -516,9 +1473,9 @@
           ],
           "tags": [
             {
-              "key": "sensor",
-              "operator": "=",
-              "value": "1"
+              "key": "humidity",
+              "operator": ">",
+              "value": "0"
             }
           ]
         }
@@ -565,13 +1522,13 @@
       }
     },
     {
-      "content": "# Acces au Arduino\n\n[Metriques du Arduino](http://192168.81.90)\n\n# Acces a node-red\n\n[node-red](192.168.81.72:1880/ui)\n\n# Camera\n\n* [Camera 1](http://192.168.81.70:8081/)\n* [Camera nocturne](rtsp://192.168.81.98/live/profile.0)",
+      "content": "# Acces au Arduino\n\n[Metriques du Arduino](http://poulailler.local)\n\n# Acces a node-red\n\n[node-red](raspberrypi4.local:1880/ui)\n\n# Camera\n\n* [Camera 1](http://192.168.81.70:8081/)\n* [Camera 2](http://192.168.81.71:8081/)\n* [Camera nocturne](rtsp://192.168.81.98/live/profile.0)",
       "datasource": null,
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 43
       },
       "id": 10,
       "mode": "markdown",
@@ -607,7 +1564,7 @@
     ]
   },
   "timezone": "",
-  "title": "Poulailler",
-  "uid": "Hwg1o6mgk",
-  "version": 7
+  "title": "Poulailler2",
+  "uid": "Hwg1o6mgl",
+  "version": 1
 }
