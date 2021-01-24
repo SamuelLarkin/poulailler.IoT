@@ -29,8 +29,8 @@ services:
       image: influxdb:1.7.9
       hostname: influxdb
       volumes:
-         #- influxdb-lib:/var/lib/influxdb
-         - /media/usb/influxdb-lib:/var/lib/influxdb
+         - influxdb-lib:/var/lib/influxdb
+         #- /media/usb/influxdb-lib:/var/lib/influxdb
          - ./data/influxdb/etc:/etc/influxdb:ro
          # [How to Setup InfluxDB, Telegraf and Grafana on Docker: Part 1](https://www.influxdata.com/blog/how-to-setup-influxdb-telegraf-and-grafana-on-docker-part-1/)
          # [Docker Hub - Influxdb](https://hub.docker.com/_/influxdb)
@@ -96,8 +96,8 @@ services:
 
 
 volumes:
-   #influxdb-lib:
-   #   external: false
+   influxdb-lib:
+      external: false
 
    grafana-lib:
       external: false
