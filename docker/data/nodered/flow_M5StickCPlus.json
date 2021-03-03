@@ -1,0 +1,449 @@
+[
+    {
+        "id": "e9f3f921.b6c428",
+        "type": "tab",
+        "label": "M5StickCPlus",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "24377e58.9e0292",
+        "type": "mqtt in",
+        "z": "e9f3f921.b6c428",
+        "name": "",
+        "topic": "test/temperature/#",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "201a444d.5c8794",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "1904ffd3.f2137",
+                "4f2959d6.2e1e68"
+            ]
+        ]
+    },
+    {
+        "id": "1904ffd3.f2137",
+        "type": "function",
+        "z": "e9f3f921.b6c428",
+        "name": "Parse Temperature",
+        "func": "let [ db, topic, sensor_name, sensor_id ] = msg.topic.split('/');\nmsg.db = db;\n\nlet temperature = parseFloat(msg.payload);\n\n// [How to use a variable for a key in a JavaScript object literal?](https://stackoverflow.com/a/2274327)\nmsg.payload = [\n    { [topic]: temperature },\n    {\n        \"sensor_name\": sensor_name,\n        \"sensor_id\": sensor_id,\n    },\n    ];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 120,
+        "wires": [
+            [
+                "bc935703.84fcd8",
+                "27d9b753.dbf8d8"
+            ]
+        ]
+    },
+    {
+        "id": "bc935703.84fcd8",
+        "type": "debug",
+        "z": "e9f3f921.b6c428",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 650,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "4f2959d6.2e1e68",
+        "type": "debug",
+        "z": "e9f3f921.b6c428",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 410,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "7deb1e9.c1af2e",
+        "type": "mqtt in",
+        "z": "e9f3f921.b6c428",
+        "name": "",
+        "topic": "test/humidity/#",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "201a444d.5c8794",
+        "x": 110,
+        "y": 300,
+        "wires": [
+            [
+                "9f42e82.fdd1518",
+                "8ee74bf6.268bd8"
+            ]
+        ]
+    },
+    {
+        "id": "9f42e82.fdd1518",
+        "type": "debug",
+        "z": "e9f3f921.b6c428",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 410,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "7dc9e6e8.493348",
+        "type": "influxdb out",
+        "z": "e9f3f921.b6c428",
+        "influxdb": "d630a124.44f21",
+        "name": "",
+        "measurement": "humidity",
+        "precision": "s",
+        "retentionPolicy": "",
+        "x": 880,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "8ee74bf6.268bd8",
+        "type": "function",
+        "z": "e9f3f921.b6c428",
+        "name": "Parse Humidiy",
+        "func": "let [ db, topic, sensor_name, sensor_id ] = msg.topic.split('/');\nmsg.db = db;\n\n// [How to use a variable for a key in a JavaScript object literal?](https://stackoverflow.com/a/2274327)\nmsg.payload = [\n    { [topic]: parseFloat(msg.payload) },\n    {\n        \"sensor_name\": sensor_name,\n        \"sensor_id\": sensor_id,\n    },\n    ];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 420,
+        "y": 360,
+        "wires": [
+            [
+                "4ec7137c.84c89c",
+                "a3f540a0.7955e"
+            ]
+        ]
+    },
+    {
+        "id": "4ec7137c.84c89c",
+        "type": "debug",
+        "z": "e9f3f921.b6c428",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 610,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "2e5107dd.b42d98",
+        "type": "influxdb out",
+        "z": "e9f3f921.b6c428",
+        "influxdb": "d630a124.44f21",
+        "name": "",
+        "measurement": "temperature",
+        "precision": "s",
+        "retentionPolicy": "",
+        "x": 930,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "de56c57d.a36c68",
+        "type": "inject",
+        "z": "e9f3f921.b6c428",
+        "name": "Sensor 2 temperature injector",
+        "topic": "poulailler/temperature/sensor/2",
+        "payload": "16.5",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "5",
+        "x": 160,
+        "y": 120,
+        "wires": [
+            [
+                "1904ffd3.f2137"
+            ]
+        ]
+    },
+    {
+        "id": "2dad59bc.2818f6",
+        "type": "inject",
+        "z": "e9f3f921.b6c428",
+        "name": "Sensor 2 humidity injector",
+        "topic": "poulailler/humidity/sensor/2",
+        "payload": "56.4",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "5",
+        "x": 150,
+        "y": 360,
+        "wires": [
+            [
+                "8ee74bf6.268bd8"
+            ]
+        ]
+    },
+    {
+        "id": "a3f540a0.7955e",
+        "type": "delay",
+        "z": "e9f3f921.b6c428",
+        "name": "1 msg / min",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 630,
+        "y": 420,
+        "wires": [
+            [
+                "7dc9e6e8.493348",
+                "997d1083.f2817"
+            ]
+        ]
+    },
+    {
+        "id": "27d9b753.dbf8d8",
+        "type": "delay",
+        "z": "e9f3f921.b6c428",
+        "name": "1 msg / min",
+        "pauseType": "timed",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 670,
+        "y": 180,
+        "wires": [
+            [
+                "2e5107dd.b42d98",
+                "ff6134f6.9ba0f8"
+            ]
+        ]
+    },
+    {
+        "id": "ff6134f6.9ba0f8",
+        "type": "debug",
+        "z": "e9f3f921.b6c428",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 870,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "997d1083.f2817",
+        "type": "debug",
+        "z": "e9f3f921.b6c428",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 830,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "5f90bcc4.1ffc94",
+        "type": "mqtt in",
+        "z": "e9f3f921.b6c428",
+        "name": "",
+        "topic": "test/pressure/#",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "201a444d.5c8794",
+        "x": 120,
+        "y": 540,
+        "wires": [
+            [
+                "1b63d117.0bc17f",
+                "e1eec87d.8c8d18"
+            ]
+        ]
+    },
+    {
+        "id": "1b63d117.0bc17f",
+        "type": "debug",
+        "z": "e9f3f921.b6c428",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 410,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "c43a4b01.cdcf08",
+        "type": "influxdb out",
+        "z": "e9f3f921.b6c428",
+        "influxdb": "d630a124.44f21",
+        "name": "",
+        "measurement": "pressure",
+        "precision": "s",
+        "retentionPolicy": "",
+        "x": 880,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "e1eec87d.8c8d18",
+        "type": "function",
+        "z": "e9f3f921.b6c428",
+        "name": "Parse Humidiy",
+        "func": "let [ db, topic, sensor_name, sensor_id ] = msg.topic.split('/');\nmsg.db = db;\n\n// [How to use a variable for a key in a JavaScript object literal?](https://stackoverflow.com/a/2274327)\nmsg.payload = [\n    { [topic]: parseFloat(msg.payload) },\n    {\n        \"sensor_name\": sensor_name,\n        \"sensor_id\": sensor_id,\n    },\n    ];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 420,
+        "y": 600,
+        "wires": [
+            [
+                "2ca5a4f.3acd65c",
+                "f3f502bf.a3fbb"
+            ]
+        ]
+    },
+    {
+        "id": "2ca5a4f.3acd65c",
+        "type": "debug",
+        "z": "e9f3f921.b6c428",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 610,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "aef4f69b.f13578",
+        "type": "inject",
+        "z": "e9f3f921.b6c428",
+        "name": "Sensor 2 humidity injector",
+        "topic": "poulailler/humidity/sensor/2",
+        "payload": "56.4",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "5",
+        "x": 150,
+        "y": 600,
+        "wires": [
+            [
+                "e1eec87d.8c8d18"
+            ]
+        ]
+    },
+    {
+        "id": "f3f502bf.a3fbb",
+        "type": "delay",
+        "z": "e9f3f921.b6c428",
+        "name": "1 msg / min",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 630,
+        "y": 660,
+        "wires": [
+            [
+                "c43a4b01.cdcf08",
+                "8c6cf1a3.4de98"
+            ]
+        ]
+    },
+    {
+        "id": "8c6cf1a3.4de98",
+        "type": "debug",
+        "z": "e9f3f921.b6c428",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 830,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "201a444d.5c8794",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "mosquitto",
+        "broker": "mosquitto",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "d630a124.44f21",
+        "type": "influxdb",
+        "z": "",
+        "hostname": "influxdb",
+        "port": "8086",
+        "protocol": "http",
+        "database": "test",
+        "name": "",
+        "usetls": false,
+        "tls": ""
+    }
+]
