@@ -1,3 +1,4 @@
+# docker-compose -p "poulailler" up
 version: "3"
 # vim:expandtab:shiftwidth=3:tabstop=3
 
