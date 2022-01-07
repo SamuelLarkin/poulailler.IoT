@@ -1,3 +1,11 @@
+# Starting the Stack
+
+`docker-compose -p "poulailler" up`
+
+
+
+# Notes
+
 ```bash
 INFLUXDB_USERNAME=admin INFLUXDB_PASSWORD=admin docker-compose  up --detach
 WARNING: Some networks were defined but are not used by any service: poulailler
