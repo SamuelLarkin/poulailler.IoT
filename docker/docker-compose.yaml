@@ -80,8 +80,6 @@ services:
          - ./data/grafana/etc:/etc/grafana:ro
          - grafana-lib:/var/lib/grafana
          - grafana-log:/var/log/grafana
-      links:
-         - influxdb:influxdb
       environment:
          - GF_INSTALL_PLUGINS=grafana-clock-panel,briangann-gauge-panel,natel-plotly-panel,grafana-simple-json-datasource
       env_file:
