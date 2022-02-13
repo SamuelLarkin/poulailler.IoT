@@ -1,4 +1,4 @@
-# docker-compose -p "poulailler" up
+# docker-compose --project-name poulailler up
 version: "3"
 # vim:expandtab:shiftwidth=3:tabstop=3
 
