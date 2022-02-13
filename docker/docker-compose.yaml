@@ -1,6 +1,6 @@
 # docker-compose --project-name poulailler up
 version: "3"
-# vim:expandtab:shiftwidth=3:tabstop=3
+# vim:nowrap:expandtab:shiftwidth=3:tabstop=3
 
 services:
    # [Docker image for OwnTracks Recorder](https://github.com/owntracks/docker-recorder)
